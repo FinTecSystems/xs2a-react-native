@@ -19,6 +19,9 @@ PODS:
     - DoubleConversion
     - glog
   - glog (0.3.5)
+  - NVActivityIndicatorView (5.1.1):
+    - NVActivityIndicatorView/Base (= 5.1.1)
+  - NVActivityIndicatorView/Base (5.1.1)
   - RCTRequired (0.63.4)
   - RCTTypeSafety (0.63.4):
     - FBLazyVector (= 0.63.4)
@@ -245,8 +248,15 @@ PODS:
     - React-Core (= 0.63.4)
     - React-cxxreact (= 0.63.4)
     - React-jsi (= 0.63.4)
+  - SwiftyJSON (5.0.1)
   - xs2a-react-native (0.1.0):
     - React-Core
+    - XS2AiOS (= 1.1.3)
+  - XS2AiOS (1.1.3):
+    - NVActivityIndicatorView (= 5.1.1)
+    - SwiftyJSON (= 5.0.1)
+    - XS2AiOSNetService (= 1.0.4)
+  - XS2AiOSNetService (1.0.4)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -283,6 +293,10 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - boost-for-react-native
+    - NVActivityIndicatorView
+    - SwiftyJSON
+    - XS2AiOS
+    - XS2AiOSNetService
 
 EXTERNAL SOURCES:
   DoubleConversion:
@@ -347,6 +361,7 @@ SPEC CHECKSUMS:
   FBReactNativeSpec: f2c97f2529dd79c083355182cc158c9f98f4bd6e
   Folly: b73c3869541e86821df3c387eb0af5f65addfab4
   glog: 40a13f7840415b9a77023fbcae0f1e6f43192af3
+  NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
   RCTRequired: 082f10cd3f905d6c124597fd1c14f6f2655ff65e
   RCTTypeSafety: 8c9c544ecbf20337d069e4ae7fd9a377aadf504b
   React: b0a957a2c44da4113b0c4c9853d8387f8e64e615
@@ -367,7 +382,10 @@ SPEC CHECKSUMS:
   React-RCTText: 5c51df3f08cb9dedc6e790161195d12bac06101c
   React-RCTVibration: ae4f914cfe8de7d4de95ae1ea6cc8f6315d73d9d
   ReactCommon: 73d79c7039f473b76db6ff7c6b159c478acbbb3b
-  xs2a-react-native: 8325746129789535a40020ce8c20b84eed2cc7b9
+  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
+  xs2a-react-native: 4f5abf2b61548ee25c7345b6b07fe127ebc4eb0b
+  XS2AiOS: cc7515d840e2f7452a15e29edabee9b5b49089b4
+  XS2AiOSNetService: bdb0e06169e4cc71b9c36ff7be8cd4fda2780a90
   Yoga: 4bd86afe9883422a7c4028c00e34790f560923d6
 
 PODFILE CHECKSUM: 692fdaaa289ace9c5a7f400fd52f9e9206680117
