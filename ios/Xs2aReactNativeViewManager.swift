@@ -9,25 +9,83 @@ class Xs2aReactNativeViewManager: RCTViewManager {
 }
 
 class Xs2aReactNativeView: UIView {
-	@objc var color: String = "" {
+	@objc var onSuccess: RCTDirectEventBlock?
+	@objc var onAbort: RCTDirectEventBlock?
+	@objc var onNetworkError: RCTDirectEventBlock?
+
+	var xs2aViewController: XS2AViewController?
+	var xs2aConfig: XS2AiOS.Configuration?
+	
+	@objc
+	var wizardSessionKey: String = "" {
 		didSet {
-			self.backgroundColor = hexStringToUIColor(hexColor: color)
+			xs2aConfig = XS2AiOS.Configuration(wizardSessionKey:
+			wizardSessionKey)
+			setNeedsLayout()
+		}
+	}
+	
+	override init(frame: CGRect) {
+		super.init(frame: frame)
+	}
+
+	required init?(coder aDecoder: NSCoder) { fatalError() }
+
+	override func layoutSubviews() {
+		super.layoutSubviews()
+
+		if xs2aViewController == nil {
+			embed()
+		} else {
+			xs2aViewController?.view.frame = bounds
 		}
 	}
 
-	func hexStringToUIColor(hexColor: String) -> UIColor {
-		let stringScanner = Scanner(string: hexColor)
-
-		if(hexColor.hasPrefix("#")) {
-		  stringScanner.scanLocation = 1
+	private func embed() {
+		guard let parentVC = parentViewController else {
+			return
 		}
-		var color: UInt32 = 0
-		stringScanner.scanHexInt32(&color)
+		
+		xs2aConfig = XS2AiOS.Configuration(wizardSessionKey: wizardSessionKey)
+		XS2AiOS.configure(withConfig: xs2aConfig!, withStyle: XS2AiOS.StyleProvider())
 
-		let r = CGFloat(Int(color >> 16) & 0x000000FF)
-		let g = CGFloat(Int(color >> 8) & 0x000000FF)
-		let b = CGFloat(Int(color) & 0x000000FF)
+		let vc = XS2AViewController { result in
+			switch result {
+			case .success(.finish):
+				self.onSuccess?([:])
+				break
+			case .success(.finishWithCredentials(let credentials)):
+				self.onSuccess?(["credentials": credentials])
+				break
+			case .failure(let error):
+				switch error {
+				case .userAborted:
+					self.onAbort?([:])
+					break
+				case .networkError:
+					self.onNetworkError?([:])
+					break
+				}
+			}
+		}
 
-		return UIColor(red: r / 255.0, green: g / 255.0, blue: b / 255.0, alpha: 1)
+		parentVC.addChild(vc)
+		addSubview(vc.view)
+		vc.view.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+		vc.didMove(toParent: parentVC)
+		self.xs2aViewController = vc
+	}
+}
+
+extension UIView {
+	var parentViewController: UIViewController? {
+		var parentResponder: UIResponder? = self
+		while parentResponder != nil {
+			parentResponder = parentResponder!.next
+			if let viewController = parentResponder as? UIViewController {
+				return viewController
+			}
+		}
+		return nil
 	}
 }
