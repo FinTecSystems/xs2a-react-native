@@ -14,21 +14,19 @@ import com.facebook.react.uimanager.events.RCTEventEmitter
 import com.fintecsystems.xs2awizard.XS2AWizard
 
 class Xs2aReactNativeViewManager(private val reactContext: ReactContext) : ViewGroupManager<FrameLayout>() {
-  private val createCommand = 1
-
   private var sessionKey: String? = null
 
   override fun getName() = "Xs2aReactNativeView"
 
-  override fun getCommandsMap() = mutableMapOf(Pair("create", createCommand))
+  override fun getCommandsMap() = mutableMapOf(Pair(CREATE_COMMAND, CREATE_COMMAND_ID))
 
   override fun getExportedCustomDirectEventTypeConstants(): Map<String, Map<String, String>> = MapBuilder.of(
-    "success",
-    MapBuilder.of("registrationName", "onSuccess"),
-    "abort",
-    MapBuilder.of("registrationName", "onAbort"),
-    "error",
-    MapBuilder.of("registrationName", "onError")
+    EVENT_SUCCESS,
+    MapBuilder.of("registrationName", EVENT_SUCCESS_REGISTRATION_NAME),
+    EVENT_ABORT,
+    MapBuilder.of("registrationName", EVENT_ABORT_REGISTRATION_NAME),
+    EVENT_ERROR,
+    MapBuilder.of("registrationName", EVENT_ERROR_REGISTRATION_NAME)
   )
 
   override fun createViewInstance(reactContext: ThemedReactContext) = FrameLayout(reactContext)
@@ -36,7 +34,7 @@ class Xs2aReactNativeViewManager(private val reactContext: ReactContext) : ViewG
   override fun receiveCommand(root: FrameLayout, commandId: Int, args: ReadableArray?) {
     val reactNativeViewId = args?.getInt(0)
 
-    if (commandId == createCommand) {
+    if (commandId == CREATE_COMMAND_ID) {
       createFragment(root, reactNativeViewId!!)
     }
   }
@@ -92,21 +90,35 @@ class Xs2aReactNativeViewManager(private val reactContext: ReactContext) : ViewG
     )
   }
 
-  private fun onFinish(view: View, callback: String?) {
+  private fun onFinish(view: View, credentials: String?) {
     val event = Arguments.createMap()
-    event.putString("callback", callback)
+    event.putString("credentials", credentials)
 
-    dispatchEvent(view, event, "success")
+    dispatchEvent(view, event, EVENT_SUCCESS)
   }
 
   private fun onError(view: View, error: XS2AWizard.XS2AWizardError) {
     val event = Arguments.createMap()
     event.putString("error", error.toString())
 
-    dispatchEvent(view, event, "error")
+    dispatchEvent(view, event, EVENT_ERROR)
   }
 
   private fun onAbort(view: View) {
-    dispatchEvent(view, Arguments.createMap(), "abort")
+    dispatchEvent(view, Arguments.createMap(), EVENT_ABORT)
+  }
+
+  companion object {
+    private const val CREATE_COMMAND = "create"
+    private const val CREATE_COMMAND_ID = 1
+
+    private const val EVENT_SUCCESS = "success"
+    private const val EVENT_SUCCESS_REGISTRATION_NAME = "onSuccess"
+
+    private const val EVENT_ABORT = "abort"
+    private const val EVENT_ABORT_REGISTRATION_NAME = "onAbort"
+
+    private const val EVENT_ERROR = "error"
+    private const val EVENT_ERROR_REGISTRATION_NAME = "onError"
   }
 }
