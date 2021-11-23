@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import * as React from 'react';
 
 import { StyleSheet, View } from 'react-native';
@@ -7,9 +8,9 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Xs2aReactNativeViewManager
-        wizardSessionKey="vpwScc7INIOu9PpMjwl3LtAo54XwTOfKG1LetzZq"
+        wizardSessionKey="hx0rHrXuASA1y2C8qH9XvrJMaMA5UVBtPxiEPU4E"
         style={{ flex: 1, width: '100%', height: '100%' }}
-        onSuccess={() => {
+        onSuccess={({ nativeEvent: { credentials } }) => {
           console.log('succccc');
         }}
         onAbort={() => {
@@ -17,6 +18,47 @@ export default function App() {
         }}
         onNetworkError={() => {
           console.log('network error');
+        }}
+        styleProvider={{
+          font: 'Chalkduster',
+          tintColor: '#ffffff',
+          logoVariation: 'STANDARD',
+          backgroundColor: '#000000',
+          textColor: '#000000',
+          inputBackgroundColor: '#000000',
+          inputBorderRadius: 4,
+          inputTextColor: '#000000',
+          placeholderColor: '#000000',
+          buttonBorderRadius: 4,
+          submitButtonStyle: {
+            textColor: '#000000',
+            backgroundColor: '#000000',
+          },
+          backButtonStyle: {
+            textColor: '#000000',
+            backgroundColor: '#000000',
+          },
+          abortButtonStyle: {
+            textColor: '#000000',
+            backgroundColor: '#000000',
+          },
+          restartButtonStyle: {
+            textColor: '#000000',
+            backgroundColor: '#000000',
+          },
+          alertBorderRadius: 4,
+          errorStyle: {
+            textColor: '#000000',
+            backgroundColor: '#000000',
+          },
+          warningStyle: {
+            textColor: '#000000',
+            backgroundColor: '#000000',
+          },
+          infoStyle: {
+            textColor: '#000000',
+            backgroundColor: '#000000',
+          },
         }}
       />
     </View>
