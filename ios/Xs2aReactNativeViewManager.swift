@@ -285,8 +285,10 @@ class Xs2aReactNativeView: UIView {
 			return
 		}
 		
-		xs2aConfig = XS2AiOS.Configuration(wizardSessionKey: wizardSessionKey)
-		XS2AiOS.configure(withConfig: xs2aConfig!, withStyle: style ?? XS2AiOS.StyleProvider())
+		XS2AiOS.configure(
+			withConfig: XS2AiOS.Configuration(wizardSessionKey: wizardSessionKey),
+			withStyle: style ?? XS2AiOS.StyleProvider()
+		)
 
 		let vc = XS2AViewController { result in
 			switch result {

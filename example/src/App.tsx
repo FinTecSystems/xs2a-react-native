@@ -8,7 +8,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Xs2aReactNativeViewManager
-        wizardSessionKey="T5Cjjij1WXWAhPRMlqjFBbxgnHw3UNfgwiKiQnIY"
+        wizardSessionKey="6oFLAY7Vnw2hBR9BdHWAvcWMnDsVW5IdMRNw9ErM"
         style={{ flex: 1, width: '100%', height: '100%' }}
         onSuccess={({ nativeEvent: { credentials } }) => {
           console.log('succccc');
