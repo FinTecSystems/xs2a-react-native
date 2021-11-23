@@ -7,6 +7,12 @@
 
 #import "AppDelegate.h"
 
+// Silence Warning
+// https://amanhimself.dev/blog/rctbridge-required-dispatch-sync-to-load-warning/
+#if RCT_DEV
+#import <React/RCTDevLoadingView.h>
+#endif
+
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
@@ -37,6 +43,9 @@ static void InitializeFlipper(UIApplication *application) {
     InitializeFlipper(application);
   #endif
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
+  #if RCT_DEV
+    [bridge moduleForClass:[RCTDevLoadingView class]];
+  #endif
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
                                                    moduleName:@"Xs2aReactNativeExample"
                                             initialProperties:nil];

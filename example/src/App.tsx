@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import * as React from 'react';
 
 import { StyleSheet, UIManager, findNodeHandle, View } from 'react-native';
@@ -21,15 +22,56 @@ export default function App() {
       <Xs2aReactNativeViewManager
         ref={ref}
         wizardSessionKey="69nIDdeEnSXxleR7BRIqHzcHtE9iwAYLZ7xPlUdn"
-        style={{ flex: 1, width: '100%', height: '100%', backgroundColor: '#aaa' }}
-        onSuccess={() => {
-          console.log('succccc');
+        style={{ flex: 1, width: '100%', height: '100%' }}
+        onSuccess={({ nativeEvent: { credentials } }) => {
+          console.log('succccc', credentials);
         }}
         onAbort={() => {
           console.log('abort');
         }}
         onNetworkError={() => {
           console.log('network error');
+        }}
+        styleProvider={{
+          font: 'Comic Sans',
+          tintColor: '#ff0000',
+          logoVariation: 'STANDARD',
+          backgroundColor: '#ffffff',
+          textColor: '#000000',
+          inputBackgroundColor: '#059392',
+          inputBorderRadius: 15,
+          inputTextColor: '#000000',
+          placeholderColor: '#dddddd',
+          buttonBorderRadius: 9,
+          submitButtonStyle: {
+            textColor: '#000000',
+            backgroundColor: '#dddddd',
+          },
+          backButtonStyle: {
+            textColor: '#000000',
+            backgroundColor: '#dddddd',
+          },
+          abortButtonStyle: {
+            textColor: '#000000',
+            backgroundColor: '#dddddd',
+          },
+          restartButtonStyle: {
+            textColor: '#000000',
+            backgroundColor: '#dddddd',
+          },
+          alertBorderRadius: 12,
+          errorStyle: {
+            textColor: '#000000',
+            backgroundColor: '#dddddd',
+          },
+          warningStyle: {
+            textColor: '#000000',
+            backgroundColor: '#dddddd',
+          },
+          infoStyle: {
+            textColor: '#000000',
+            backgroundColor: '#dddddd',
+          },
         }}
       />
     </View>
