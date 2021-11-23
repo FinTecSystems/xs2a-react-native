@@ -23,9 +23,9 @@ export default function App() {
           font: 'Chalkduster',
           tintColor: '#ffffff',
           logoVariation: 'STANDARD',
-          backgroundColor: '#000000',
+          backgroundColor: '#ffffff',
           textColor: '#000000',
-          inputBackgroundColor: '#000000',
+          inputBackgroundColor: '#059392',
           inputBorderRadius: 4,
           inputTextColor: '#000000',
           placeholderColor: '#000000',
@@ -47,10 +47,10 @@ export default function App() {
             backgroundColor: '#000000',
           },
           alertBorderRadius: 4,
-          errorStyle: {
-            textColor: '#000000',
-            backgroundColor: '#000000',
-          },
+        //   errorStyle: {
+        //     textColor: '#000000',
+        //     backgroundColor: '#000000',
+        //   },
           warningStyle: {
             textColor: '#000000',
             backgroundColor: '#000000',
