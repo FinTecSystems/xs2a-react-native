@@ -84,10 +84,8 @@ class Xs2aReactNativeView: UIView {
 				}
 			}
 			
-			if let providedInputBorderRadius = styleProvider["inputBorderRadius"] as? String {
-				if let value = NumberFormatter().number(from: providedInputBorderRadius) {
-					inputBorderRadius = CGFloat(truncating: value)
-				}
+			if let providedInputBorderRadius = styleProvider["inputBorderRadius"] as? CGFloat {
+				inputBorderRadius = providedInputBorderRadius
 			}
 			
 			if let providedInputTextColor = styleProvider["inputTextColor"] as? String {
@@ -102,10 +100,8 @@ class Xs2aReactNativeView: UIView {
 				}
 			}
 			
-			if let providedButtonBorderRadius = styleProvider["buttonBorderRadius"] as? String {
-				if let value = NumberFormatter().number(from: providedButtonBorderRadius) {
-					buttonBorderRadius = CGFloat(truncating: value)
-				}
+			if let providedButtonBorderRadius = styleProvider["buttonBorderRadius"] as? CGFloat {
+				buttonBorderRadius = providedButtonBorderRadius
 			}
 			
 			if let providedSubmitButtonStyle = styleProvider["submitButtonStyle"] as? NSDictionary {
@@ -184,10 +180,8 @@ class Xs2aReactNativeView: UIView {
 				restartButtonStyle = XS2AiOS.ButtonStyle(textColor: textColor, backgroundColor: backgroundColor)
 			}
 			
-			if let providedAlertBorderRadius = styleProvider["alertBorderRadius"] as? String {
-				if let value = NumberFormatter().number(from: providedAlertBorderRadius) {
-					alertBorderRadius = CGFloat(truncating: value)
-				}
+			if let providedAlertBorderRadius = styleProvider["alertBorderRadius"] as? CGFloat {
+				alertBorderRadius = providedAlertBorderRadius
 			}
 			
 			if let providedErrorStyle = styleProvider["errorStyle"] as? NSDictionary {

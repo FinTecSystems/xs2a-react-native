@@ -8,7 +8,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Xs2aReactNativeViewManager
-        wizardSessionKey="hx0rHrXuASA1y2C8qH9XvrJMaMA5UVBtPxiEPU4E"
+        wizardSessionKey="T5Cjjij1WXWAhPRMlqjFBbxgnHw3UNfgwiKiQnIY"
         style={{ flex: 1, width: '100%', height: '100%' }}
         onSuccess={({ nativeEvent: { credentials } }) => {
           console.log('succccc');
@@ -20,44 +20,44 @@ export default function App() {
           console.log('network error');
         }}
         styleProvider={{
-          font: 'Chalkduster',
-          tintColor: '#ffffff',
+          font: 'Comic Sans',
+          tintColor: '#ff0000',
           logoVariation: 'STANDARD',
           backgroundColor: '#ffffff',
           textColor: '#000000',
           inputBackgroundColor: '#059392',
-          inputBorderRadius: 4,
+          inputBorderRadius: 15,
           inputTextColor: '#000000',
-          placeholderColor: '#000000',
-          buttonBorderRadius: 4,
+          placeholderColor: '#dddddd',
+          buttonBorderRadius: 9,
           submitButtonStyle: {
             textColor: '#000000',
-            backgroundColor: '#000000',
+            backgroundColor: '#dddddd',
           },
           backButtonStyle: {
             textColor: '#000000',
-            backgroundColor: '#000000',
+            backgroundColor: '#dddddd',
           },
           abortButtonStyle: {
             textColor: '#000000',
-            backgroundColor: '#000000',
+            backgroundColor: '#dddddd',
           },
           restartButtonStyle: {
             textColor: '#000000',
-            backgroundColor: '#000000',
+            backgroundColor: '#dddddd',
           },
-          alertBorderRadius: 4,
-        //   errorStyle: {
-        //     textColor: '#000000',
-        //     backgroundColor: '#000000',
-        //   },
+          alertBorderRadius: 12,
+          errorStyle: {
+            textColor: '#000000',
+            backgroundColor: '#dddddd',
+          },
           warningStyle: {
             textColor: '#000000',
-            backgroundColor: '#000000',
+            backgroundColor: '#dddddd',
           },
           infoStyle: {
             textColor: '#000000',
-            backgroundColor: '#000000',
+            backgroundColor: '#dddddd',
           },
         }}
       />
