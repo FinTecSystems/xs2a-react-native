@@ -6,6 +6,10 @@ Integrate FinTecSystems' XS2A into your React Native App.
 
 ```sh
 npm install @fintecsystems/xs2a-react-native
+
+cd ios/
+
+pod install
 ```
 
 ## Usage
