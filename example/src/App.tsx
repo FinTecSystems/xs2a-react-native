@@ -1,26 +1,13 @@
 /* eslint-disable react-native/no-inline-styles */
 import * as React from 'react';
 
-import { findNodeHandle, StyleSheet, UIManager, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Xs2aReactNativeViewManager from '@fintecsystems/xs2a-react-native';
 
 export default function App() {
-  const ref = React.useRef(null);
-
-  React.useEffect(() => {
-    const viewId = findNodeHandle(ref.current);
-
-    UIManager.dispatchViewManagerCommand(
-      viewId,
-      UIManager.getViewManagerConfig('Xs2aReactNativeView').Commands.create,
-      [viewId]
-    )
-  }, []);
-
   return (
     <View style={styles.container}>
       <Xs2aReactNativeViewManager
-        ref={ref}
         wizardSessionKey="YOUR_WIZARD_SESSION_KEY"
         style={{ flex: 1, width: '100%', height: '100%' }}
         onSuccess={({ nativeEvent: { credentials } }) => {

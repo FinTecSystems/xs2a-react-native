@@ -1,4 +1,5 @@
-import { requireNativeComponent, ViewStyle } from 'react-native';
+import { findNodeHandle, Platform, requireNativeComponent, UIManager, ViewStyle } from 'react-native';
+import * as React from 'react';
 
 type ButtonStyle = {
   textColor: String;
@@ -38,7 +39,29 @@ type Xs2aReactNativeProps = {
   style: ViewStyle;
 };
 
-export const Xs2aReactNativeViewManager =
-  requireNativeComponent<Xs2aReactNativeProps>('Xs2aReactNativeView');
+const NativeViewManager = requireNativeComponent<Xs2aReactNativeProps>('Xs2aReactNativeView');
+
+const AndroidView = (props: Xs2aReactNativeProps) => {
+  const ref = React.useRef(null);
+
+  React.useEffect(() => {
+    const viewId = findNodeHandle(ref.current);
+
+    UIManager.dispatchViewManagerCommand(
+      viewId,
+      UIManager.getViewManagerConfig('Xs2aReactNativeView').Commands.create,
+      [viewId]
+    )
+  }, []);
+
+  return (
+    <NativeViewManager
+      ref={ref}
+      {...props}
+    />
+  )
+}
+
+export const Xs2aReactNativeViewManager = Platform.OS === 'android' ? AndroidView : NativeViewManager;
 
 export default Xs2aReactNativeViewManager;
