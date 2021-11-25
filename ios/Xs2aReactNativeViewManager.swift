@@ -2,9 +2,16 @@ import XS2AiOS
 
 @objc(Xs2aReactNativeViewManager)
 class Xs2aReactNativeViewManager: RCTViewManager {
-
 	override func view() -> (Xs2aReactNativeView) {
 		return Xs2aReactNativeView()
+	}
+	
+	override static func requiresMainQueueSetup() -> Bool {
+		return true
+	}
+	
+	override func constantsToExport() -> [AnyHashable : Any]! {
+		return [:]
 	}
 }
 
@@ -20,8 +27,7 @@ class Xs2aReactNativeView: UIView {
 	@objc
 	var wizardSessionKey: String = "" {
 		didSet {
-			xs2aConfig = XS2AiOS.Configuration(wizardSessionKey:
-			wizardSessionKey)
+			xs2aConfig = XS2AiOS.Configuration(wizardSessionKey: wizardSessionKey)
 			setNeedsLayout()
 		}
 	}

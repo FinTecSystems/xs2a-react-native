@@ -1,8 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
 import * as React from 'react';
 
-import { StyleSheet, UIManager, findNodeHandle, View } from 'react-native';
-import Xs2aReactNativeViewManager from 'xs2a-react-native';
+import { findNodeHandle, StyleSheet, UIManager, View } from 'react-native';
+import Xs2aReactNativeViewManager from '@fintecsystems/xs2a-react-native';
 
 export default function App() {
   const ref = React.useRef(null);
@@ -21,19 +21,19 @@ export default function App() {
     <View style={styles.container}>
       <Xs2aReactNativeViewManager
         ref={ref}
-        wizardSessionKey="69nIDdeEnSXxleR7BRIqHzcHtE9iwAYLZ7xPlUdn"
+        wizardSessionKey="YOUR_WIZARD_SESSION_KEY"
         style={{ flex: 1, width: '100%', height: '100%' }}
         onSuccess={({ nativeEvent: { credentials } }) => {
-          console.log('succccc', credentials);
+          console.log('Success');
         }}
         onAbort={() => {
-          console.log('abort');
+          console.log('Abort');
         }}
         onNetworkError={() => {
-          console.log('network error');
+          console.log('Network error');
         }}
         styleProvider={{
-          font: 'Comic Sans',
+          font: 'Helvetica Neue',
           tintColor: '#ff0000',
           logoVariation: 'STANDARD',
           backgroundColor: '#ffffff',
@@ -83,7 +83,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#00aaaa',
   },
   box: {
     width: 60,
