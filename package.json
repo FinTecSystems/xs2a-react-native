@@ -1,6 +1,6 @@
 {
   "name": "@fintecsystems/xs2a-react-native",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Integrate FinTecSystems' XS2A into your React Native App.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",

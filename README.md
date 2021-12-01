@@ -2,6 +2,8 @@
 
 Integrate FinTecSystems' XS2A into your React Native App.
 
+**NOTE**: Only iOS is working so far. The Android implementation is still being built.
+
 ## Installation
 
 ```sh
@@ -50,33 +52,33 @@ import Xs2aReactNativeViewManager from "@fintecsystems/xs2a-react-native";
 		placeholderColor: '#dddddd',
 		buttonBorderRadius: 9,
 		submitButtonStyle: {
-		textColor: '#000000',
-		backgroundColor: '#dddddd',
+			textColor: '#000000',
+			backgroundColor: '#dddddd',
 		},
 		backButtonStyle: {
-		textColor: '#000000',
-		backgroundColor: '#dddddd',
+			textColor: '#000000',
+			backgroundColor: '#dddddd',
 		},
 		abortButtonStyle: {
-		textColor: '#000000',
-		backgroundColor: '#dddddd',
+			textColor: '#000000',
+			backgroundColor: '#dddddd',
 		},
 		restartButtonStyle: {
-		textColor: '#000000',
-		backgroundColor: '#dddddd',
+			textColor: '#000000',
+			backgroundColor: '#dddddd',
 		},
 		alertBorderRadius: 12,
 		errorStyle: {
-		textColor: '#000000',
-		backgroundColor: '#dddddd',
+			textColor: '#000000',
+			backgroundColor: '#dddddd',
 		},
 		warningStyle: {
-		textColor: '#000000',
-		backgroundColor: '#dddddd',
+			textColor: '#000000',
+			backgroundColor: '#dddddd',
 		},
 		infoStyle: {
-		textColor: '#000000',
-		backgroundColor: '#dddddd',
+			textColor: '#000000',
+			backgroundColor: '#dddddd',
 		},
 	}}
 />
