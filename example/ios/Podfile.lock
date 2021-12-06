@@ -251,8 +251,8 @@ PODS:
   - SwiftyJSON (5.0.1)
   - xs2a-react-native (0.0.1):
     - React-Core
-    - XS2AiOS (= 1.1.4)
-  - XS2AiOS (1.1.4):
+    - XS2AiOS (= 1.1.5)
+  - XS2AiOS (1.1.5):
     - NVActivityIndicatorView (= 5.1.1)
     - SwiftyJSON (= 5.0.1)
     - XS2AiOSNetService (= 1.0.5)
