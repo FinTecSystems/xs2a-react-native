@@ -19,6 +19,9 @@ export default function App() {
         onNetworkError={() => {
           console.log('Network error');
         }}
+        onSessionError={({ nativeEvent: { errorCode, recoverable } }) => {
+          console.log(errorCode, recoverable);
+        }}
         styleProvider={{
           font: 'Helvetica Neue',
           tintColor: '#ff0000',

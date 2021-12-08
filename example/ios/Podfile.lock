@@ -249,10 +249,10 @@ PODS:
     - React-cxxreact (= 0.63.4)
     - React-jsi (= 0.63.4)
   - SwiftyJSON (5.0.1)
-  - xs2a-react-native (0.0.5):
+  - xs2a-react-native (0.1.0):
     - React-Core
-    - XS2AiOS (= 1.1.6)
-  - XS2AiOS (1.1.6):
+    - XS2AiOS (= 1.2.0)
+  - XS2AiOS (1.2.0):
     - NVActivityIndicatorView (= 5.1.1)
     - SwiftyJSON (= 5.0.1)
     - XS2AiOSNetService (= 1.0.5)
@@ -383,8 +383,8 @@ SPEC CHECKSUMS:
   React-RCTVibration: ae4f914cfe8de7d4de95ae1ea6cc8f6315d73d9d
   ReactCommon: 73d79c7039f473b76db6ff7c6b159c478acbbb3b
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
-  xs2a-react-native: 89a095f8a4918ea801b614d99d84e0a454cb7d8e
-  XS2AiOS: f62454fe1be138923ed12ba7174c4d4d0f9e3aef
+  xs2a-react-native: 77a20a11482f5903d7ae8a786f58e99c17f7f1a6
+  XS2AiOS: eef23dcf1a86446decfd74ae7ab84651acab5574
   XS2AiOSNetService: bf704662e3fd79c3a35ca6ee23c08e494368c6db
   Yoga: 4bd86afe9883422a7c4028c00e34790f560923d6
 

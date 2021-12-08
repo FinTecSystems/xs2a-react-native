@@ -39,6 +39,19 @@ import Xs2aReactNativeViewManager from "@fintecsystems/xs2a-react-native";
 		// e.g. redirect to error screen
 		console.log('Network error');
 	}}
+	onSessionError={({ nativeEvent: { errorCode, recoverable } }) => {
+		/**
+		Session errors occur during a session.
+		Implementation of the different cases below is optional.
+		No action needs to be taken for them, in fact we recommend
+		to let the user handle the completion of the session until one of the above .success or .failure cases is called.
+		You can however use below cases for measuring purposes.
+		NOTE: Should you decide to do navigation to different screens based on below cases, you should only do so
+		in case of the recoverable parameter being false, otherwise the user can still finish the session.
+		*/
+		// Detailed error descriptions can be found here: https://github.com/FinTecSystems/xs2a-ios#configure-and-present-the-view
+		console.log(errorCode, recoverable);
+	}}
 	// All styles are optional
 	styleProvider={{
 		font: 'Helvetica Neue',
