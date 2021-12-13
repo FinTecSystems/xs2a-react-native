@@ -9,7 +9,7 @@ export default function App() {
     <View style={styles.container}>
       <Xs2aReactNativeViewManager
         wizardSessionKey="YOUR_WIZARD_SESSION_KEY"
-        style={{ flex: 1, width: '100%', height: '100%' }}
+        style={{ width: '100%', height: '100%' }}
         onSuccess={({ nativeEvent: { credentials } }) => {
           console.log('Success');
         }}
