@@ -19,6 +19,10 @@ export default function App() {
         onNetworkError={() => {
           console.log('Network error');
         }}
+        onBackButtonTapped={({ nativeEvent: { currentStep } }) => {
+          // Called when the back button was tapped. Optional to implement.
+          // currentStep can be any of "login", "tan", "account", "bank" or empty string ("")
+        }}
         onSessionError={({ nativeEvent: { errorCode, recoverable } }) => {
           console.log(errorCode, recoverable);
         }}
