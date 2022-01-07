@@ -12,7 +12,7 @@ cd ios/
 pod install
 ```
 
-Make sure, that your app's `minSDK` is 21 or higher and that your `compileSDK` and `targetSDK` is 31 or higher.
+Make sure, that your app's `minSdkVersion` is 21 or higher and that your `compileSdkVersion` and `targetSdkVersion` is 31 or higher.
 
 Because of that your `gradle-build-tools`-version has to be `4.2.0` or higher.
 
