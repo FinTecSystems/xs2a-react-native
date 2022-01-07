@@ -148,12 +148,12 @@ class Xs2aReactNativeViewManager(private val reactContext: ReactContext) : ViewG
     private const val EVENT_ABORT_REGISTRATION_NAME = "onAbort"
 
     private const val EVENT_ERROR = "error"
-    private const val EVENT_ERROR_REGISTRATION_NAME = "onError"
+    private const val EVENT_ERROR_REGISTRATION_NAME = "onSessionError"
 
     private const val EVENT_NETWORK_ERROR = "networkError"
     private const val EVENT_NETWORK_ERROR_REGISTRATION_NAME = "onNetworkError"
 
     private const val EVENT_BACK = "back"
-    private const val EVENT_BACK_REGISTRATION_NAME = "onBack"
+    private const val EVENT_BACK_REGISTRATION_NAME = "onBackButtonTapped"
   }
 }
