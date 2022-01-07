@@ -9,7 +9,7 @@ export default function App() {
     <View style={styles.container}>
       <Xs2aReactNativeViewManager
         wizardSessionKey="YOUR_WIZARD_SESSION_KEY"
-        style={{ flex: 1, width: '100%', height: '100%' }}
+        style={{ width: '100%', height: '100%' }}
         onSuccess={({ nativeEvent: { credentials } }) => {
           console.log('Success');
         }}
@@ -18,6 +18,13 @@ export default function App() {
         }}
         onNetworkError={() => {
           console.log('Network error');
+        }}
+        onBackButtonTapped={({ nativeEvent: { currentStep } }) => {
+          // Called when the back button was tapped. Optional to implement.
+          // currentStep can be any of "login", "tan", "account", "bank" or empty string ("")
+        }}
+        onSessionError={({ nativeEvent: { errorCode, recoverable } }) => {
+          console.log(errorCode, recoverable);
         }}
         styleProvider={{
           font: 'Helvetica Neue',

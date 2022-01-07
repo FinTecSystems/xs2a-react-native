@@ -16,6 +16,8 @@ type Xs2aReactNativeProps = {
   onSuccess: Function;
   onAbort: Function;
   onNetworkError: Function;
+  onSessionError: Function;
+  onBackButtonTapped: Function;
   styleProvider?: {
     font?: String;
     tintColor?: String;

@@ -19,6 +19,8 @@ class Xs2aReactNativeView: UIView {
 	@objc var onSuccess: RCTDirectEventBlock?
 	@objc var onAbort: RCTDirectEventBlock?
 	@objc var onNetworkError: RCTDirectEventBlock?
+	@objc var onSessionError: RCTDirectEventBlock?
+	@objc var onBackButtonTapped: RCTDirectEventBlock?
 
 	var xs2aViewController: XS2AViewController?
 	var xs2aConfig: XS2AiOS.Configuration?
@@ -291,8 +293,12 @@ class Xs2aReactNativeView: UIView {
 			return
 		}
 		
+		func backButtonActionWrapper() {
+			self.onBackButtonTapped?(["currentStep": XS2AiOS.shared.currentStep?.rawValue ?? ""])
+		}
+		
 		XS2AiOS.configure(
-			withConfig: XS2AiOS.Configuration(wizardSessionKey: wizardSessionKey),
+			withConfig: XS2AiOS.Configuration(wizardSessionKey: wizardSessionKey, backButtonAction: backButtonActionWrapper),
 			withStyle: style ?? XS2AiOS.StyleProvider()
 		)
 
@@ -300,18 +306,57 @@ class Xs2aReactNativeView: UIView {
 			switch result {
 			case .success(.finish):
 				self.onSuccess?([:])
-				break
 			case .success(.finishWithCredentials(let credentials)):
 				self.onSuccess?(["credentials": credentials])
-				break
 			case .failure(let error):
 				switch error {
 				case .userAborted:
 					self.onAbort?([:])
-					break
 				case .networkError:
 					self.onNetworkError?([:])
-					break
+				}
+			case .sessionError(let sessionError):
+				switch sessionError {
+				case .loginFailed(recoverable: let recoverable):
+					self.onSessionError?([
+						"errorCode": "login_failed",
+						"recoverable": recoverable
+					])
+				case .sessionTimeout(recoverable: let recoverable):
+					self.onSessionError?([
+						"errorCode": "session_timeout",
+						"recoverable": recoverable
+					])
+				case .tanFailed(recoverable: let recoverable):
+					self.onSessionError?([
+						"errorCode": "tan_failed",
+						"recoverable": recoverable
+					])
+				case .techError(recoverable: let recoverable):
+					self.onSessionError?([
+						"errorCode": "tech_error",
+						"recoverable": recoverable
+					])
+				case .testmodeError(recoverable: let recoverable):
+					self.onSessionError?([
+						"errorCode": "testmode_error",
+						"recoverable": recoverable
+					])
+				case .transNotPossible(recoverable: let recoverable):
+					self.onSessionError?([
+						"errorCode": "trans_not_possible",
+						"recoverable": recoverable
+					])
+				case .validationFailed(recoverable: let recoverable):
+					self.onSessionError?([
+						"errorCode": "validation_failed",
+						"recoverable": recoverable
+					])
+				case .other(errorCode: let errorCode, recoverable: let recoverable):
+					self.onSessionError?([
+						"errorCode": errorCode,
+						"recoverable": recoverable
+					])
 				}
 			}
 		}
