@@ -13,10 +13,12 @@ import com.facebook.react.uimanager.annotations.ReactProp
 import com.facebook.react.uimanager.events.RCTEventEmitter
 import com.fintecsystems.xs2awizard.components.XS2AWizardConfig
 import com.fintecsystems.xs2awizard.components.XS2AWizardError
+import com.fintecsystems.xs2awizard.components.XS2AWizardStep
 import com.fintecsystems.xs2awizard.wrappers.XS2AWizardFragment
 
 class Xs2aReactNativeViewManager(private val reactContext: ReactContext) : ViewGroupManager<FrameLayout>() {
   private var sessionKey: String? = null
+  private var currentStep: XS2AWizardStep? = null
 
   override fun getName() = "Xs2aReactNativeView"
 
@@ -28,7 +30,11 @@ class Xs2aReactNativeViewManager(private val reactContext: ReactContext) : ViewG
     EVENT_ABORT,
     MapBuilder.of("registrationName", EVENT_ABORT_REGISTRATION_NAME),
     EVENT_ERROR,
-    MapBuilder.of("registrationName", EVENT_ERROR_REGISTRATION_NAME)
+    MapBuilder.of("registrationName", EVENT_ERROR_REGISTRATION_NAME),
+    EVENT_NETWORK_ERROR,
+    MapBuilder.of("registrationName", EVENT_NETWORK_ERROR_REGISTRATION_NAME),
+    EVENT_BACK,
+    MapBuilder.of("registrationName", EVENT_BACK_REGISTRATION_NAME)
   )
 
   override fun createViewInstance(reactContext: ThemedReactContext) = FrameLayout(reactContext)
@@ -49,7 +55,10 @@ class Xs2aReactNativeViewManager(private val reactContext: ReactContext) : ViewG
       sessionKey!!,
       onFinish = { onFinish(parentView, it) },
       onAbort = { onAbort(parentView) },
-      onError = { onError(parentView, it) }
+      onError = { onError(parentView, it) },
+      onNetworkError = { onNetworkError(parentView) },
+      onBack = { onBack(parentView) },
+      onStep = ::onStep,
     ))
 
     val activity = reactContext.currentActivity as FragmentActivity
@@ -93,21 +102,39 @@ class Xs2aReactNativeViewManager(private val reactContext: ReactContext) : ViewG
   }
 
   private fun onFinish(view: View, credentials: String?) {
-    val event = Arguments.createMap()
-    event.putString("credentials", credentials)
+    Arguments.createMap().apply {
+      putString("credentials", credentials)
 
-    dispatchEvent(view, event, EVENT_SUCCESS)
+      dispatchEvent(view, this, EVENT_SUCCESS)
+    }
   }
 
   private fun onError(view: View, error: XS2AWizardError) {
-    val event = Arguments.createMap()
-    event.putString("error", error.toString())
+    Arguments.createMap().apply {
+      putString("error", error.toString())
 
-    dispatchEvent(view, event, EVENT_ERROR)
+      dispatchEvent(view, this, EVENT_ERROR)
+    }
   }
 
   private fun onAbort(view: View) {
     dispatchEvent(view, Arguments.createMap(), EVENT_ABORT)
+  }
+
+  private fun onNetworkError(view: View) {
+    dispatchEvent(view, Arguments.createMap(), EVENT_NETWORK_ERROR)
+  }
+
+  private fun onBack(view: View) {
+    Arguments.createMap().apply {
+      putString("currentStep", currentStep.toString())
+
+      dispatchEvent(view, this, EVENT_BACK)
+    }
+  }
+
+  private fun onStep(newStep: XS2AWizardStep?) {
+    currentStep = newStep
   }
 
   companion object {
@@ -122,5 +149,11 @@ class Xs2aReactNativeViewManager(private val reactContext: ReactContext) : ViewG
 
     private const val EVENT_ERROR = "error"
     private const val EVENT_ERROR_REGISTRATION_NAME = "onError"
+
+    private const val EVENT_NETWORK_ERROR = "networkError"
+    private const val EVENT_NETWORK_ERROR_REGISTRATION_NAME = "onNetworkError"
+
+    private const val EVENT_BACK = "back"
+    private const val EVENT_BACK_REGISTRATION_NAME = "onBack"
   }
 }
