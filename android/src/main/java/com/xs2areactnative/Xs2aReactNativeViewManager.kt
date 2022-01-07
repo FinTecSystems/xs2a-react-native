@@ -11,7 +11,9 @@ import com.facebook.react.uimanager.ThemedReactContext
 import com.facebook.react.uimanager.ViewGroupManager
 import com.facebook.react.uimanager.annotations.ReactProp
 import com.facebook.react.uimanager.events.RCTEventEmitter
-import com.fintecsystems.xs2awizard.XS2AWizard
+import com.fintecsystems.xs2awizard.components.XS2AWizardConfig
+import com.fintecsystems.xs2awizard.components.XS2AWizardError
+import com.fintecsystems.xs2awizard.wrappers.XS2AWizardFragment
 
 class Xs2aReactNativeViewManager(private val reactContext: ReactContext) : ViewGroupManager<FrameLayout>() {
   private var sessionKey: String? = null
@@ -43,7 +45,7 @@ class Xs2aReactNativeViewManager(private val reactContext: ReactContext) : ViewG
     val parentView = root.findViewById<ViewGroup>(reactNativeViewId)
     setupLayout(parentView)
 
-    val xs2aWizard = XS2AWizard(XS2AWizard.XS2AWizardConfig(
+    val xs2aWizard = XS2AWizardFragment(XS2AWizardConfig(
       sessionKey!!,
       onFinish = { onFinish(parentView, it) },
       onAbort = { onAbort(parentView) },
@@ -97,7 +99,7 @@ class Xs2aReactNativeViewManager(private val reactContext: ReactContext) : ViewG
     dispatchEvent(view, event, EVENT_SUCCESS)
   }
 
-  private fun onError(view: View, error: XS2AWizard.XS2AWizardError) {
+  private fun onError(view: View, error: XS2AWizardError) {
     val event = Arguments.createMap()
     event.putString("error", error.toString())
 
