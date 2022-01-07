@@ -14,15 +14,24 @@ pod install
 
 Make sure, that your app's `minSDK` is 21 or higher and that your `compileSDK` and `targetSDK` is 31 or higher.
 
+Because of that your `gradle-build-tools`-version has to be `4.2.0` or higher.
+
 `android/build.gradle`
 ```groovy
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
     ext {
-        minSdkVersion = 21
-        compileSdkVersion = 31
-        targetSdkVersion = 31
+        minSdkVersion = 21 // Upgrade if needed
+        compileSdkVersion = 31 // Upgrade if needed
+        targetSdkVersion = 31 // Upgrade if needed
+    }
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath("com.android.tools.build:gradle:4.2.2") // Upgrade if needed
 ...
 ```
 
