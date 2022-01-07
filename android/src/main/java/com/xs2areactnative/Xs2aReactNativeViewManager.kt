@@ -93,6 +93,11 @@ class Xs2aReactNativeViewManager(private val reactContext: ReactContext) : ViewG
     sessionKey = _sessionKey
   }
 
+  @ReactProp(name = "styleProvider")
+  fun setTheme(view: View, _theme: ReadableMap? = null) {
+    // sessionKey = _sessionKey
+  }
+
   private fun dispatchEvent(view: View, event: WritableMap, eventName: String) {
     reactContext.getJSModule(RCTEventEmitter::class.java).receiveEvent(
       view.id,
@@ -111,7 +116,8 @@ class Xs2aReactNativeViewManager(private val reactContext: ReactContext) : ViewG
 
   private fun onError(view: View, error: XS2AWizardError) {
     Arguments.createMap().apply {
-      putString("error", error.toString())
+      putString("errorCode", error.code)
+      putBoolean("recoverable", error.recoverable)
 
       dispatchEvent(view, this, EVENT_ERROR)
     }
@@ -127,7 +133,8 @@ class Xs2aReactNativeViewManager(private val reactContext: ReactContext) : ViewG
 
   private fun onBack(view: View) {
     Arguments.createMap().apply {
-      putString("currentStep", currentStep.toString())
+      if (currentStep != null) putString("currentStep", currentStep!!.stepName)
+      else putNull("currentStep")
 
       dispatchEvent(view, this, EVENT_BACK)
     }
