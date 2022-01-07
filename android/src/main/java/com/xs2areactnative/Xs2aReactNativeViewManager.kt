@@ -14,28 +14,36 @@ import com.facebook.react.uimanager.events.RCTEventEmitter
 import com.fintecsystems.xs2awizard.components.XS2AWizardConfig
 import com.fintecsystems.xs2awizard.components.XS2AWizardError
 import com.fintecsystems.xs2awizard.components.XS2AWizardStep
+import com.fintecsystems.xs2awizard.components.theme.IXS2ATheme
+import com.fintecsystems.xs2awizard.components.theme.styles.LogoVariation
+import com.fintecsystems.xs2awizard.components.theme.support.SupportColor
+import com.fintecsystems.xs2awizard.components.theme.support.SupportShape
+import com.fintecsystems.xs2awizard.components.theme.support.XS2ASupportTheme
 import com.fintecsystems.xs2awizard.wrappers.XS2AWizardFragment
 
-class Xs2aReactNativeViewManager(private val reactContext: ReactContext) : ViewGroupManager<FrameLayout>() {
+class Xs2aReactNativeViewManager(private val reactContext: ReactContext) :
+  ViewGroupManager<FrameLayout>() {
   private var sessionKey: String? = null
   private var currentStep: XS2AWizardStep? = null
+  private var theme: IXS2ATheme? = null
 
   override fun getName() = "Xs2aReactNativeView"
 
   override fun getCommandsMap() = mutableMapOf(Pair(CREATE_COMMAND, CREATE_COMMAND_ID))
 
-  override fun getExportedCustomDirectEventTypeConstants(): Map<String, Map<String, String>> = MapBuilder.of(
-    EVENT_SUCCESS,
-    MapBuilder.of("registrationName", EVENT_SUCCESS_REGISTRATION_NAME),
-    EVENT_ABORT,
-    MapBuilder.of("registrationName", EVENT_ABORT_REGISTRATION_NAME),
-    EVENT_ERROR,
-    MapBuilder.of("registrationName", EVENT_ERROR_REGISTRATION_NAME),
-    EVENT_NETWORK_ERROR,
-    MapBuilder.of("registrationName", EVENT_NETWORK_ERROR_REGISTRATION_NAME),
-    EVENT_BACK,
-    MapBuilder.of("registrationName", EVENT_BACK_REGISTRATION_NAME)
-  )
+  override fun getExportedCustomDirectEventTypeConstants(): Map<String, Map<String, String>> =
+    MapBuilder.of(
+      EVENT_SUCCESS,
+      MapBuilder.of("registrationName", EVENT_SUCCESS_REGISTRATION_NAME),
+      EVENT_ABORT,
+      MapBuilder.of("registrationName", EVENT_ABORT_REGISTRATION_NAME),
+      EVENT_ERROR,
+      MapBuilder.of("registrationName", EVENT_ERROR_REGISTRATION_NAME),
+      EVENT_NETWORK_ERROR,
+      MapBuilder.of("registrationName", EVENT_NETWORK_ERROR_REGISTRATION_NAME),
+      EVENT_BACK,
+      MapBuilder.of("registrationName", EVENT_BACK_REGISTRATION_NAME)
+    )
 
   override fun createViewInstance(reactContext: ThemedReactContext) = FrameLayout(reactContext)
 
@@ -51,15 +59,18 @@ class Xs2aReactNativeViewManager(private val reactContext: ReactContext) : ViewG
     val parentView = root.findViewById<ViewGroup>(reactNativeViewId)
     setupLayout(parentView)
 
-    val xs2aWizard = XS2AWizardFragment(XS2AWizardConfig(
-      sessionKey!!,
-      onFinish = { onFinish(parentView, it) },
-      onAbort = { onAbort(parentView) },
-      onError = { onError(parentView, it) },
-      onNetworkError = { onNetworkError(parentView) },
-      onBack = { onBack(parentView) },
-      onStep = ::onStep,
-    ))
+    val xs2aWizard = XS2AWizardFragment(
+      XS2AWizardConfig(
+        sessionKey!!,
+        onFinish = { onFinish(parentView, it) },
+        onAbort = { onAbort(parentView) },
+        onError = { onError(parentView, it) },
+        onNetworkError = { onNetworkError(parentView) },
+        onBack = { onBack(parentView) },
+        onStep = ::onStep,
+        theme = theme
+      )
+    )
 
     val activity = reactContext.currentActivity as FragmentActivity
     activity.supportFragmentManager
@@ -94,8 +105,47 @@ class Xs2aReactNativeViewManager(private val reactContext: ReactContext) : ViewG
   }
 
   @ReactProp(name = "styleProvider")
-  fun setTheme(view: View, _theme: ReadableMap? = null) {
-    // sessionKey = _sessionKey
+  fun setTheme(view: View, styleProvider: ReadableMap? = null) {
+    if (styleProvider == null) {
+      theme = null
+
+      return
+    }
+
+    styleProvider.toHashMap().apply {
+      theme = XS2ASupportTheme(
+        //font,
+        tintColor = SupportColor(getOrNull<String>("tintColor") ?: PRIMARY_COLOR),
+        logoVariation = LogoVariation.valueOf(getOrNull<String>("logoVariation") ?: LOGO_VARIATION),
+        backgroundColor = SupportColor(getOrNull<String>("backgroundColor") ?: WHITE),
+        textColor = SupportColor(getOrNull<String>("textColor") ?: BLACK),
+        inputBackgroundColor = SupportColor(
+          getOrNull<String>("inputBackgroundColor") ?: BACKGROUND_INPUT
+        ),
+        inputShape = SupportShape(
+          getOrNull<Int>("inputBorderRadius") ?: SHAPE_SIZE,
+          SupportShape.ShapeType.ROUNDED
+        ),
+        inputTextColor = SupportColor(getOrNull<String>("inputTextColor") ?: BLACK),
+        placeholderColor = SupportColor(getOrNull<String>("placeholderColor") ?: DARK_GREY),
+        buttonShape = SupportShape(
+          getOrNull<Int>("buttonBorderRadius") ?: SHAPE_SIZE,
+          SupportShape.ShapeType.ROUNDED
+        ),
+        paragraphShape = SupportShape(
+          getOrNull<Int>("alertBorderRadius") ?: SHAPE_SIZE,
+          SupportShape.ShapeType.ROUNDED
+        ),
+        submitButtonStyle = toButtonStyle("submitButtonStyle", PRIMARY_COLOR, WHITE),
+        redirectButtonStyle = toButtonStyle("submitButtonStyle", PRIMARY_COLOR, WHITE),
+        backButtonStyle = toButtonStyle("backButtonStyle", DARK_GREY, WHITE),
+        abortButtonStyle = toButtonStyle("abortButtonStyle", DARK_GREY, WHITE),
+        restartButtonStyle = toButtonStyle("restartButtonStyle", DARK_GREY, WHITE),
+        errorParagraphStyle = toParagraphStyle("errorStyle", BACKGROUND_ERROR, WHITE),
+        infoParagraphStyle = toParagraphStyle("infoStyle", BACKGROUND_INFO, WHITE),
+        warningParagraphStyle = toParagraphStyle("warningStyle", BACKGROUND_WARNING, BLACK),
+      )
+    }
   }
 
   private fun dispatchEvent(view: View, event: WritableMap, eventName: String) {
@@ -162,5 +212,16 @@ class Xs2aReactNativeViewManager(private val reactContext: ReactContext) : ViewG
 
     private const val EVENT_BACK = "back"
     private const val EVENT_BACK_REGISTRATION_NAME = "onBackButtonTapped"
+
+    private const val PRIMARY_COLOR = "#194f89"
+    private const val BACKGROUND_INPUT = "#1f000000"
+    private const val BACKGROUND_ERROR = "#FF0000"
+    private const val BACKGROUND_INFO = "#0000FF"
+    private const val BACKGROUND_WARNING = "#FFFF00"
+    private const val WHITE = "#ffffff"
+    private const val BLACK = "#000000"
+    private const val DARK_GREY = "#808080"
+    private const val LOGO_VARIATION = "STANDARD"
+    private const val SHAPE_SIZE = 4
   }
 }
