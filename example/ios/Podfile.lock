@@ -278,10 +278,10 @@ PODS:
     - React-logger (= 0.66.4)
     - React-perflogger (= 0.66.4)
   - SwiftyJSON (5.0.1)
-  - xs2a-react-native (0.2.0):
+  - xs2a-react-native (0.3.0):
     - React-Core
-    - XS2AiOS (= 1.2.1)
-  - XS2AiOS (1.2.1):
+    - XS2AiOS (= 1.2.2)
+  - XS2AiOS (1.2.2):
     - NVActivityIndicatorView (= 5.1.1)
     - SwiftyJSON (= 5.0.1)
     - XS2AiOSNetService (= 1.0.5)
@@ -397,11 +397,11 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   boost: a7c83b31436843459a1961bfd74b96033dc77234
-  DoubleConversion: cde416483dac037923206447da6e1454df403714
+  DoubleConversion: 831926d9b8bf8166fd87886c4abab286c2422662
   FBLazyVector: e5569e42a1c79ca00521846c223173a57aca1fe1
   FBReactNativeSpec: fe08c1cd7e2e205718d77ad14b34957cce949b58
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
-  glog: 40a13f7840415b9a77023fbcae0f1e6f43192af3
+  glog: 5337263514dd6f09803962437687240c5dc39aa4
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
   RCT-Folly: a21c126816d8025b547704b777a2ba552f3d9fa9
   RCTRequired: 4bf86c70714490bca4bf2696148638284622644b
@@ -428,8 +428,8 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: dec32ee6f2e2a26e13e58152271535fadff5455a
   ReactCommon: 57b69f6383eafcbd7da625bfa6003810332313c4
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
-  xs2a-react-native: 29c09cb29b8d218aac955f0b15edbd7817eb1a47
-  XS2AiOS: dc10afc0a2d198a451be6ee243bc07672086eab2
+  xs2a-react-native: 82184e73191cc57600cb26ba089857c08bbfb3b4
+  XS2AiOS: d3fdfdcb8eb3f90a1641db43bd4561888e9f8cfc
   XS2AiOSNetService: bf704662e3fd79c3a35ca6ee23c08e494368c6db
   Yoga: e7dc4e71caba6472ff48ad7d234389b91dadc280
 
