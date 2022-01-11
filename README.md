@@ -82,7 +82,6 @@ import Xs2aReactNativeViewManager from "@fintecsystems/xs2a-react-native";
   }}
   // All styles are optional
   styleProvider={{
-    font: 'Helvetica Neue',
     tintColor: '#ff0000',
     logoVariation: 'STANDARD',
     backgroundColor: '#ffffff',
