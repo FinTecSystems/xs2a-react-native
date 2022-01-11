@@ -12,6 +12,6 @@ class Xs2aReactNativePackage : ReactPackage {
     }
 
     override fun createViewManagers(reactContext: ReactApplicationContext): List<ViewManager<*, *>> {
-        return listOf(Xs2aReactNativeViewManager())
+        return listOf(Xs2aReactNativeViewManager(reactContext))
     }
 }
