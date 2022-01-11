@@ -5,13 +5,16 @@ Integrate FinTecSystems' XS2A into your React Native App.
 ## Installation
 
 ```sh
-npm install @fintecsystems/xs2a-react-native
+npm install @fintecsystems/xs2a-react-native --save
+```
 
+### iOS
+```sh
 cd ios/
-
 pod install
 ```
 
+### Android
 Make sure, that your app's `minSdkVersion` is 21 or higher and that your `compileSdkVersion` and `targetSdkVersion` is 31 or higher.
 
 Because of that your `gradle-build-tools`-version has to be `4.2.0` or higher.
