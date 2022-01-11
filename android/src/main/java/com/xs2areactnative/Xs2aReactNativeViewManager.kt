@@ -20,6 +20,7 @@ import com.fintecsystems.xs2awizard.components.theme.support.SupportColor
 import com.fintecsystems.xs2awizard.components.theme.support.SupportShape
 import com.fintecsystems.xs2awizard.components.theme.support.XS2ASupportTheme
 import com.fintecsystems.xs2awizard.wrappers.XS2AWizardFragment
+import kotlin.math.roundToInt
 
 class Xs2aReactNativeViewManager(private val reactContext: ReactContext) :
   ViewGroupManager<FrameLayout>() {
@@ -122,17 +123,17 @@ class Xs2aReactNativeViewManager(private val reactContext: ReactContext) :
           getOrNull<String>("inputBackgroundColor") ?: BACKGROUND_INPUT
         ),
         inputShape = SupportShape(
-          getOrNull<Int>("inputBorderRadius") ?: SHAPE_SIZE,
+          (getOrNull<Double>("inputBorderRadius") ?: SHAPE_SIZE).roundToInt(),
           SupportShape.ShapeType.ROUNDED
         ),
         inputTextColor = SupportColor(getOrNull<String>("inputTextColor") ?: BLACK),
         placeholderColor = SupportColor(getOrNull<String>("placeholderColor") ?: DARK_GREY),
         buttonShape = SupportShape(
-          getOrNull<Int>("buttonBorderRadius") ?: SHAPE_SIZE,
+          (getOrNull<Double>("buttonBorderRadius") ?: SHAPE_SIZE).roundToInt(),
           SupportShape.ShapeType.ROUNDED
         ),
         paragraphShape = SupportShape(
-          getOrNull<Int>("alertBorderRadius") ?: SHAPE_SIZE,
+          (getOrNull<Double>("alertBorderRadius") ?: SHAPE_SIZE).roundToInt(),
           SupportShape.ShapeType.ROUNDED
         ),
         submitButtonStyle = toButtonStyle("submitButtonStyle", PRIMARY_COLOR, WHITE),
@@ -221,6 +222,6 @@ class Xs2aReactNativeViewManager(private val reactContext: ReactContext) :
     private const val BLACK = "#000000"
     private const val DARK_GREY = "#808080"
     private const val LOGO_VARIATION = "STANDARD"
-    private const val SHAPE_SIZE = 4
+    private const val SHAPE_SIZE = 4.0
   }
 }
