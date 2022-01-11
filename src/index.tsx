@@ -13,19 +13,19 @@ type AlertStyle = {
 
 interface SuccessCallback {
   nativeEvent: {
-    credentials: string;
+    credentials: string | undefined;
   };
 }
 
 interface BackButtonTappedCallback {
   nativeEvent: {
-    currentStep: string;
+    currentStep: string | undefined;
   };
 }
 
 interface SessionErrorCallback {
   nativeEvent: {
-    errorCode: string;
+    errorCode: string | undefined;
     recoverable: boolean;
   };
 }
