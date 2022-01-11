@@ -11,7 +11,7 @@ export default function App() {
         wizardSessionKey="YOUR_WIZARD_SESSION_KEY"
         style={{ width: '100%', height: '100%' }}
         onSuccess={({ nativeEvent: { credentials } }) => {
-          console.log('Success');
+          console.log('Success', credentials);
         }}
         onAbort={() => {
           console.log('Abort');
@@ -20,6 +20,7 @@ export default function App() {
           console.log('Network error');
         }}
         onBackButtonTapped={({ nativeEvent: { currentStep } }) => {
+          console.log('Pressed back on step:', currentStep);
           // Called when the back button was tapped. Optional to implement.
           // currentStep can be any of "login", "tan", "account", "bank" or empty string ("")
         }}
@@ -27,7 +28,6 @@ export default function App() {
           console.log(errorCode, recoverable);
         }}
         styleProvider={{
-          font: 'Helvetica Neue',
           tintColor: '#ff0000',
           logoVariation: 'STANDARD',
           backgroundColor: '#ffffff',

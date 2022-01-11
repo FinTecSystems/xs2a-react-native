@@ -11,13 +11,32 @@ type AlertStyle = {
   backgroundColor: String;
 };
 
+interface SuccessCallback {
+  nativeEvent: {
+    credentials: string;
+  };
+}
+
+interface BackButtonTappedCallback {
+  nativeEvent: {
+    currentStep: string;
+  };
+}
+
+interface SessionErrorCallback {
+  nativeEvent: {
+    errorCode: string;
+    recoverable: boolean;
+  };
+}
+
 type Xs2aReactNativeProps = {
   wizardSessionKey: string;
-  onSuccess: Function;
+  onSuccess: (arg0: SuccessCallback) => void;
   onAbort: Function;
   onNetworkError: Function;
-  onSessionError: Function;
-  onBackButtonTapped: Function;
+  onSessionError: (arg0: SessionErrorCallback) => void;
+  onBackButtonTapped: (arg0: BackButtonTappedCallback) => void;
   styleProvider?: {
     font?: String;
     tintColor?: String;
