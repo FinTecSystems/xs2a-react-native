@@ -114,7 +114,6 @@ class Xs2aReactNativeViewManager(private val reactContext: ReactContext) :
 
     styleProvider.toHashMap().apply {
       theme = XS2ASupportTheme(
-        //font,
         tintColor = SupportColor(getOrNull<String>("tintColor") ?: PRIMARY_COLOR),
         logoVariation = LogoVariation.valueOf(getOrNull<String>("logoVariation") ?: LOGO_VARIATION),
         backgroundColor = SupportColor(getOrNull<String>("backgroundColor") ?: WHITE),
