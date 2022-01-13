@@ -19,12 +19,15 @@ Make sure, that your app's `minSdkVersion` is 21 or higher and that your `compil
 
 Because of that your `gradle-build-tools`-version has to be `4.2.0` or higher.
 
+Make sure, because we raised the `compileSdkVersion` to 31, you need to delete the `buildToolsVersion` field.
+
 `android/build.gradle`
 ```groovy
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
     ext {
+        buildToolsVersion = "30.0.2" // Delete this line
         minSdkVersion = 21 // Upgrade if needed
         compileSdkVersion = 31 // Upgrade if needed
         targetSdkVersion = 31 // Upgrade if needed
@@ -36,6 +39,31 @@ buildscript {
     dependencies {
         classpath("com.android.tools.build:gradle:4.2.2") // Upgrade if needed
 ...
+```
+
+Since Android 12 (API Level 31) you need to add `android:exported` to your `AndroidManifest.xml`.
+
+`android/app/src/main/AndroidManifest.xml`
+```xml
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  package="com.rn_testapp">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+      android:name=".MainApplication"
+      android:label="@string/app_name"
+      android:icon="@mipmap/ic_launcher"
+      android:roundIcon="@mipmap/ic_launcher_round"
+      android:allowBackup="false"
+      android:theme="@style/AppTheme">
+      <activity
+        android:name=".MainActivity"
+        android:label="@string/app_name"
+        android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
+        android:launchMode="singleTask"
+        android:exported="true" <!--Add this line-->
+        android:windowSoftInputMode="adjustResize">
 ```
 
 ## Usage
