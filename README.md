@@ -19,7 +19,7 @@ Make sure, that your app's `minSdkVersion` is 21 or higher and that your `compil
 
 Because of that your `gradle-build-tools`-version has to be `4.2.0` or higher.
 
-Make sure, because we raised the `compileSdkVersion` to 31, you need to delete the `buildToolsVersion` field.
+Make sure, because we raised the `compileSdkVersion` to 31, to delete the `buildToolsVersion` field.
 
 `android/build.gradle`
 ```groovy
