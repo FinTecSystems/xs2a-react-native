@@ -152,6 +152,16 @@ import Xs2aReactNativeViewManager from "@fintecsystems/xs2a-react-native";
 />
 ```
 
+### Encryption Export Compliance Information
+
+When uploading your app to App Store Connect, Apple typically wants to know some information on whether your app uses encryption and if it qualifies for an exemption 
+under Category 5, Part 2 of the U.S. Export Administration Regulations. This SDK *does* qualify for such exemption, namely article `(d)`:
+
+> Specially designed and limited for banking use or "money transactions"
+
+Please note, that this only applies to this SDK and the corresponding `XS2AiOSNetService`, but not to any other parts of your app, which might not qualify 
+for such exemptions and you might have to reconsider how to answer that dialog.
+
 ### License
 
 Please note that this mobile SDK is subject to the MIT license. MIT license does not apply to the logo of FinTecSystems GmbH, the terms of use and the privacy policy of FinTecSystems GmbH. The license terms of the logo of FinTecSystems GmbH, the terms of use and the privacy policy of FinTecSystems GmbH are included in the LICENSE as FTS LICENSE.
