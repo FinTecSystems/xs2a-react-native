@@ -2,9 +2,16 @@
 import * as React from 'react';
 
 import { StyleSheet, View } from 'react-native';
-import Xs2aReactNativeViewManager from '@fintecsystems/xs2a-react-native';
+import {
+  Xs2aReactNativeViewManager,
+  clearCredentials,
+} from '@fintecsystems/xs2a-react-native';
 
 export default function App() {
+  React.useEffect(() => {
+    clearCredentials();
+  }, []);
+
   return (
     <View style={styles.container}>
       <Xs2aReactNativeViewManager

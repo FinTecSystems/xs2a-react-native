@@ -1,4 +1,4 @@
-import { findNodeHandle, Platform, requireNativeComponent, UIManager, ViewStyle } from 'react-native';
+import { findNodeHandle, Platform, requireNativeComponent, NativeModules, UIManager, ViewStyle } from 'react-native';
 import * as React from 'react';
 
 type ButtonStyle = {
@@ -62,6 +62,8 @@ type Xs2aReactNativeProps = {
 
 const NativeViewManager = requireNativeComponent<Xs2aReactNativeProps>('Xs2aReactNativeView');
 
+const NativeModule = NativeModules.Xs2aReactNativeModule;
+
 const AndroidView = (props: Xs2aReactNativeProps) => {
   const ref = React.useRef(null);
 
@@ -84,5 +86,9 @@ const AndroidView = (props: Xs2aReactNativeProps) => {
 }
 
 export const Xs2aReactNativeViewManager = Platform.OS === 'android' ? AndroidView : NativeViewManager;
+
+export const clearCredentials = () => {
+  NativeModule.clearCredentials();
+};
 
 export default Xs2aReactNativeViewManager;
