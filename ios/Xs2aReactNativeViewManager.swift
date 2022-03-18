@@ -1,18 +1,21 @@
 import XS2AiOS
 
-@objc(Xs2aReactNativeViewManager)
-class Xs2aReactNativeViewManager: RCTViewManager {
-	override func view() -> (Xs2aReactNativeView) {
-		return Xs2aReactNativeView()
-	}
-	
+@objc(Xs2aMethods)
+class Xs2aMethods: NSObject {
 	@objc
-	public func clearKeychain() {
+	public static func clearKeychain() {
 		do {
 			try XS2AiOS.clearKeychain()
 		} catch _ {
 			
 		}
+	}
+}
+
+@objc(Xs2aReactNativeViewManager)
+class Xs2aReactNativeViewManager: RCTViewManager {
+	override func view() -> (Xs2aReactNativeView) {
+		return Xs2aReactNativeView()
 	}
 	
 	override static func requiresMainQueueSetup() -> Bool {
