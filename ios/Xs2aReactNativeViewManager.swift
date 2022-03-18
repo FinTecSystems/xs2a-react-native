@@ -6,6 +6,15 @@ class Xs2aReactNativeViewManager: RCTViewManager {
 		return Xs2aReactNativeView()
 	}
 	
+	@objc
+	public func clearKeychain() {
+		do {
+			try XS2AiOS.clearKeychain()
+		} catch _ {
+			
+		}
+	}
+	
 	override static func requiresMainQueueSetup() -> Bool {
 		return true
 	}
@@ -33,7 +42,7 @@ class Xs2aReactNativeView: UIView {
 			setNeedsLayout()
 		}
 	}
-	
+
 	@objc
 	var styleProvider: NSDictionary = [:] {
 		didSet {
