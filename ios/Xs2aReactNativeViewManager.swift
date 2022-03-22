@@ -1,17 +1,5 @@
 import XS2AiOS
 
-@objc(Xs2aMethods)
-class Xs2aMethods: NSObject {
-	@objc
-	public static func clearKeychain() {
-		do {
-			try XS2AiOS.clearKeychain()
-		} catch _ {
-			
-		}
-	}
-}
-
 @objc(Xs2aReactNativeViewManager)
 class Xs2aReactNativeViewManager: RCTViewManager {
 	override func view() -> (Xs2aReactNativeView) {
