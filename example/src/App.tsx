@@ -8,9 +8,11 @@ import {
 } from '@fintecsystems/xs2a-react-native';
 
 export default function App() {
-  React.useEffect(() => {
-    clearCredentials();
-  }, []);
+  const clearAllStoredCredentials = () => {
+    // In Case you are using the Credential Storing Feature
+    // you might want to make use of the method:
+    // clearCredentials();
+  };
 
   return (
     <View style={styles.container}>
