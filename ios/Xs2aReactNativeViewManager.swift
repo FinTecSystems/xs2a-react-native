@@ -33,7 +33,7 @@ class Xs2aReactNativeView: UIView {
 			setNeedsLayout()
 		}
 	}
-	
+
 	@objc
 	var styleProvider: NSDictionary = [:] {
 		didSet {
