@@ -279,7 +279,7 @@ PODS:
     - React-logger (= 0.67.4)
     - React-perflogger (= 0.67.4)
   - SwiftyJSON (5.0.1)
-  - xs2a-react-native (1.0.1):
+  - xs2a-react-native (1.1.0):
     - React-Core
     - XS2AiOS (= 1.4.2)
   - XS2AiOS (1.4.2):
