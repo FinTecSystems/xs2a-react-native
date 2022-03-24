@@ -281,13 +281,13 @@ PODS:
   - SwiftyJSON (5.0.1)
   - xs2a-react-native (1.1.0):
     - React-Core
-    - XS2AiOS (= 1.4.2)
-  - XS2AiOS (1.4.2):
+    - XS2AiOS (= 1.5.1)
+  - XS2AiOS (1.5.1):
     - KeychainAccess (= 4.2.2)
     - NVActivityIndicatorView (= 5.1.1)
     - SwiftyJSON (= 5.0.1)
-    - XS2AiOSNetService (= 1.0.5)
-  - XS2AiOSNetService (1.0.5)
+    - XS2AiOSNetService (= 1.0.7)
+  - XS2AiOSNetService (1.0.7)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -432,9 +432,9 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: a9d3c82ddf7ffdad9fbe6a81c6d6f8c06385464d
   ReactCommon: 07d0c460b9ba9af3eaf1b8f5abe7daaad28c9c4e
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
-  xs2a-react-native: 3f033b429b319269a70dd15ddd61a6b47bb586ec
-  XS2AiOS: ecde098dd23a130f57536e7ada271556c63c03b1
-  XS2AiOSNetService: bf704662e3fd79c3a35ca6ee23c08e494368c6db
+  xs2a-react-native: 1c9617863b6c649a18b3a91d1906c6901027750c
+  XS2AiOS: 525a311b2c97da0057fa3ac8712de613e8cec5fb
+  XS2AiOSNetService: 28fb0fb46933028baa3772b4daa96eb9ee6c4fef
   Yoga: d6b6a80659aa3e91aaba01d0012e7edcbedcbecd
 
 PODFILE CHECKSUM: 3696afcd5a88e64dd19b26f9035095b71d04f1ca
