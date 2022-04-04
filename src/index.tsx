@@ -79,11 +79,13 @@ const AndroidView = (props: Xs2aReactNativeProps) => {
   React.useEffect(() => {
     const viewId = findNodeHandle(ref.current);
 
-    UIManager.dispatchViewManagerCommand(
-      viewId,
-      UIManager.getViewManagerConfig('Xs2aReactNativeView').Commands.create,
-      [viewId]
-    );
+    requestAnimationFrame(() => {
+      UIManager.dispatchViewManagerCommand(
+        viewId,
+        UIManager.getViewManagerConfig('Xs2aReactNativeView').Commands.create,
+        [viewId]
+      );
+    });
   }, []);
 
   return <NativeViewManager ref={ref} {...props} />;
