@@ -36,46 +36,48 @@ export default function App() {
         onSessionError={({ nativeEvent: { errorCode, recoverable } }) => {
           console.log(errorCode, recoverable);
         }}
-        styleProvider={{
-          tintColor: '#ff0000',
-          logoVariation: 'STANDARD',
-          backgroundColor: '#ffffff',
-          textColor: '#000000',
-          inputBackgroundColor: '#059392',
-          inputBorderRadius: 15,
-          inputTextColor: '#000000',
-          placeholderColor: '#dddddd',
-          buttonBorderRadius: 9,
-          submitButtonStyle: {
-            textColor: '#000000',
-            backgroundColor: '#dddddd',
-          },
-          backButtonStyle: {
-            textColor: '#000000',
-            backgroundColor: '#dddddd',
-          },
-          abortButtonStyle: {
-            textColor: '#000000',
-            backgroundColor: '#dddddd',
-          },
-          restartButtonStyle: {
-            textColor: '#000000',
-            backgroundColor: '#dddddd',
-          },
-          alertBorderRadius: 12,
-          errorStyle: {
-            textColor: '#000000',
-            backgroundColor: '#dddddd',
-          },
-          warningStyle: {
-            textColor: '#000000',
-            backgroundColor: '#dddddd',
-          },
-          infoStyle: {
-            textColor: '#000000',
-            backgroundColor: '#dddddd',
-          },
-        }}
+        styleProvider={
+          {
+            //   tintColor: '#ff0000',
+            //   logoVariation: 'STANDARD',
+            //   backgroundColor: '#ffffff',
+            //   textColor: '#000000',
+            //   inputBackgroundColor: '#059392',
+            //   inputBorderRadius: 15,
+            //   inputTextColor: '#000000',
+            //   placeholderColor: '#dddddd',
+            //   buttonBorderRadius: 9,
+            //   submitButtonStyle: {
+            //     textColor: '#000000',
+            //     backgroundColor: '#dddddd',
+            //   },
+            //   backButtonStyle: {
+            //     textColor: '#000000',
+            //     backgroundColor: '#dddddd',
+            //   },
+            //   abortButtonStyle: {
+            //     textColor: '#000000',
+            //     backgroundColor: '#dddddd',
+            //   },
+            //   restartButtonStyle: {
+            //     textColor: '#000000',
+            //     backgroundColor: '#dddddd',
+            //   },
+            //   alertBorderRadius: 12,
+            //   errorStyle: {
+            //     textColor: '#000000',
+            //     backgroundColor: '#dddddd',
+            //   },
+            //   warningStyle: {
+            //     textColor: '#000000',
+            //     backgroundColor: '#dddddd',
+            //   },
+            //   infoStyle: {
+            //     textColor: '#000000',
+            //     backgroundColor: '#dddddd',
+            //   },
+          }
+        }
       />
     </View>
   );
