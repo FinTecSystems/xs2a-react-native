@@ -33,6 +33,22 @@ class Xs2aReactNativeView: UIView {
 			setNeedsLayout()
 		}
 	}
+	
+	var xs2aLanguage: XS2AiOS.Language?
+	
+	@objc
+	var language: String? = nil {
+		didSet {
+			guard let language = language else {
+				return
+			}
+
+			if (["de", "en", "fr", "es", "it"].contains(language)) {
+				xs2aLanguage = XS2AiOS.Language(rawValue: language)
+			}
+			setNeedsLayout()
+		}
+	}
 
 	@objc
 	var styleProvider: NSDictionary = [:] {
@@ -298,7 +314,11 @@ class Xs2aReactNativeView: UIView {
 		}
 		
 		XS2AiOS.configure(
-			withConfig: XS2AiOS.Configuration(wizardSessionKey: wizardSessionKey, backButtonAction: backButtonActionWrapper),
+			withConfig: XS2AiOS.Configuration(
+				wizardSessionKey: wizardSessionKey,
+				backButtonAction: backButtonActionWrapper,
+				language: xs2aLanguage
+			),
 			withStyle: style ?? XS2AiOS.StyleProvider()
 		)
 

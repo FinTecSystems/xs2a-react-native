@@ -39,6 +39,7 @@ interface SessionErrorCallback {
 
 type Xs2aReactNativeProps = {
   wizardSessionKey: string;
+  language?: 'de' | 'en' | 'fr' | 'es' | 'it';
   onSuccess: (arg0: SuccessCallback) => void;
   onAbort: Function;
   onNetworkError: Function;
