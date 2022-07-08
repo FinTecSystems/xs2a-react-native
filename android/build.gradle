@@ -126,5 +126,5 @@ dependencies {
   // noinspection GradleDynamicVersion
   api 'com.facebook.react:react-native:+'
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-  implementation "com.fintecsystems:xs2awizard:3.5.1"
+  implementation "com.fintecsystems:xs2awizard:3.6.0"
 }
