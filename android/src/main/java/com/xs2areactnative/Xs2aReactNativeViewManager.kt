@@ -14,6 +14,7 @@ import com.facebook.react.uimanager.events.RCTEventEmitter
 import com.fintecsystems.xs2awizard.components.XS2AWizardConfig
 import com.fintecsystems.xs2awizard.components.XS2AWizardError
 import com.fintecsystems.xs2awizard.components.XS2AWizardStep
+import com.fintecsystems.xs2awizard.components.XS2AWizardLanguage
 import com.fintecsystems.xs2awizard.components.theme.IXS2ATheme
 import com.fintecsystems.xs2awizard.components.theme.styles.LogoVariation
 import com.fintecsystems.xs2awizard.components.theme.support.SupportColor
@@ -27,6 +28,7 @@ class Xs2aReactNativeViewManager(private val reactContext: ReactContext) :
   private var sessionKey: String? = null
   private var currentStep: XS2AWizardStep? = null
   private var theme: IXS2ATheme? = null
+  private var language: XS2AWizardLanguage? = null
 
   override fun getName() = "Xs2aReactNativeView"
 
@@ -69,7 +71,8 @@ class Xs2aReactNativeViewManager(private val reactContext: ReactContext) :
         onNetworkError = { onNetworkError(parentView) },
         onBack = { onBack(parentView) },
         onStep = ::onStep,
-        theme = theme
+        theme = theme,
+        language = language
       )
     )
 
@@ -146,6 +149,11 @@ class Xs2aReactNativeViewManager(private val reactContext: ReactContext) :
         warningParagraphStyle = toParagraphStyle("warningStyle", BACKGROUND_WARNING, BLACK),
       )
     }
+  }
+
+  @ReactProp(name = "language")
+  fun setLanguage(view: View, _language: String) {
+    language = XS2AWizardLanguage.valueOf(_language.uppercase())
   }
 
   private fun dispatchEvent(view: View, event: WritableMap, eventName: String) {
