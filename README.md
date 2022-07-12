@@ -76,6 +76,7 @@ import Xs2aReactNativeViewManager from "@fintecsystems/xs2a-react-native";
 <Xs2aReactNativeViewManager
   style={{ width: '100%', height: '100%' }}
   wizardSessionKey="YOUR_WIZARD_SESSION_KEY"
+  language="de | en | fr | it | es"
   onSuccess={({ nativeEvent: { credentials } }) => {
     // e.g. redirect to success screen
 
