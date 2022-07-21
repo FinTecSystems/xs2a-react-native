@@ -1,7 +1,7 @@
 {
   "name": "@fintecsystems/xs2a-react-native",
-  "version": "1.1.5",
-  "description": "Integrate FinTecSystems' XS2A into your React Native App.",
+  "version": "1.2.0",
+  "description": "Integrate XS2A from Tink Germany into your React Native App.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -34,7 +34,7 @@
     "android"
   ],
   "repository": "https://github.com/FinTecSystems/xs2a-react-native",
-  "author": "FinTecSystems GmbH <support@fintecsystems.com> (https://fintecsystems.com)",
+  "author": "Tink Germany GmbH <support@tink-germany.com> (https://tink.com/de/fts/)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/FinTecSystems/xs2a-react-native/issues"
