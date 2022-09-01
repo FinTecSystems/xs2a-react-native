@@ -30,8 +30,8 @@ buildscript {
     ext {
         buildToolsVersion = "30.0.2" // Delete this line
         minSdkVersion = 21 // Upgrade if needed
-        compileSdkVersion = 31 // Upgrade if needed
-        targetSdkVersion = 31 // Upgrade if needed
+        compileSdkVersion = 33 // Upgrade if needed
+        targetSdkVersion = 33 // Upgrade if needed
     }
     repositories {
         google()
