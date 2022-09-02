@@ -16,11 +16,11 @@ pod install
 ```
 
 ### Android
-Make sure, that your app's `minSdkVersion` is 21 or higher and that your `compileSdkVersion` and `targetSdkVersion` is 31 or higher.
+Make sure, that your app's `minSdkVersion` is 21 or higher and that your `compileSdkVersion` and `targetSdkVersion` is 33 or higher.
 
 Because of that your `gradle-build-tools`-version has to be `4.2.0` or higher.
 
-Make sure, because we raised the `compileSdkVersion` to 31, to delete the `buildToolsVersion` field.
+Make sure, because we raised the `compileSdkVersion` to 33, to delete the `buildToolsVersion` field.
 
 `android/build.gradle`
 ```groovy
@@ -30,8 +30,8 @@ buildscript {
     ext {
         buildToolsVersion = "30.0.2" // Delete this line
         minSdkVersion = 21 // Upgrade if needed
-        compileSdkVersion = 31 // Upgrade if needed
-        targetSdkVersion = 31 // Upgrade if needed
+        compileSdkVersion = 33 // Upgrade if needed
+        targetSdkVersion = 33 // Upgrade if needed
     }
     repositories {
         google()
