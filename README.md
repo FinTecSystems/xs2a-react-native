@@ -3,6 +3,10 @@
 Integrate XS2A from Tink Germany into your React Native App.
 This React Native SDK is a wrapper of [xs2a-ios](https://github.com/FinTecSystems/xs2a-ios) and [xs2a-android](https://github.com/FinTecSystems/xs2a-android).
 
+## Requirements
+
+- iOS Version >= 13
+
 ## Installation
 
 ```sh
