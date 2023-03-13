@@ -11,23 +11,20 @@ import com.facebook.react.uimanager.ThemedReactContext
 import com.facebook.react.uimanager.ViewGroupManager
 import com.facebook.react.uimanager.annotations.ReactProp
 import com.facebook.react.uimanager.events.RCTEventEmitter
-import com.fintecsystems.xs2awizard.components.XS2AWizardConfig
+import com.fintecsystems.xs2awizard.components.XS2AWizardCallbackListener
 import com.fintecsystems.xs2awizard.components.XS2AWizardError
-import com.fintecsystems.xs2awizard.components.XS2AWizardStep
 import com.fintecsystems.xs2awizard.components.XS2AWizardLanguage
-import com.fintecsystems.xs2awizard.components.theme.IXS2ATheme
+import com.fintecsystems.xs2awizard.components.XS2AWizardStep
+import com.fintecsystems.xs2awizard.components.theme.XS2ATheme
 import com.fintecsystems.xs2awizard.components.theme.styles.LogoVariation
-import com.fintecsystems.xs2awizard.components.theme.support.SupportColor
-import com.fintecsystems.xs2awizard.components.theme.support.SupportShape
-import com.fintecsystems.xs2awizard.components.theme.support.XS2ASupportTheme
 import com.fintecsystems.xs2awizard.wrappers.XS2AWizardFragment
-import kotlin.math.roundToInt
+import com.fintecsystems.xs2awizard.wrappers.setXs2aCallbacks
 
 class Xs2aReactNativeViewManager(private val reactContext: ReactContext) :
   ViewGroupManager<FrameLayout>() {
   private var sessionKey: String? = null
   private var currentStep: XS2AWizardStep? = null
-  private var theme: IXS2ATheme? = null
+  private var theme: XS2ATheme? = null
   private var language: XS2AWizardLanguage? = null
 
   override fun getName() = "Xs2aReactNativeView"
@@ -64,20 +61,39 @@ class Xs2aReactNativeViewManager(private val reactContext: ReactContext) :
     setupLayout(parentView)
 
     val xs2aWizard = XS2AWizardFragment(
-      XS2AWizardConfig(
-        sessionKey!!,
-        onFinish = { onFinish(parentView, it) },
-        onAbort = { onAbort(parentView) },
-        onError = { onError(parentView, it) },
-        onNetworkError = { onNetworkError(parentView) },
-        onBack = { onBack(parentView) },
-        onStep = ::onStep,
-        theme = theme,
-        language = language
-      )
+      sessionKey = sessionKey!!,
+      theme = theme,
+      language = language
     )
 
+    val xs2aCallbacks = object : XS2AWizardCallbackListener {
+      override fun onAbort() {
+        onAbort(parentView)
+      }
+
+      override fun onBack() {
+        onBack(parentView)
+      }
+
+      override fun onError(xs2aWizardError: XS2AWizardError) {
+        onError(parentView, xs2aWizardError)
+      }
+
+      override fun onFinish(credentials: String?) {
+        onFinish(parentView, credentials)
+      }
+
+      override fun onNetworkError() {
+        onNetworkError(parentView)
+      }
+
+      override fun onStep(newStep: XS2AWizardStep) {
+        onStep(newStep)
+      }
+    }
+
     val activity = reactContext.currentActivity as FragmentActivity
+    activity.supportFragmentManager.setXs2aCallbacks(activity, xs2aCallbacks)
     activity.supportFragmentManager
       .beginTransaction()
       .replace(reactNativeViewId, xs2aWizard, reactNativeViewId.toString())
@@ -117,37 +133,26 @@ class Xs2aReactNativeViewManager(private val reactContext: ReactContext) :
       return
     }
 
-    styleProvider.toHashMap().apply {
-      theme = XS2ASupportTheme(
-        tintColor = SupportColor(getOrNull<String>("tintColor") ?: PRIMARY_COLOR),
-        logoVariation = LogoVariation.valueOf(getOrNull<String>("logoVariation") ?: LOGO_VARIATION),
-        backgroundColor = SupportColor(getOrNull<String>("backgroundColor") ?: WHITE),
-        textColor = SupportColor(getOrNull<String>("textColor") ?: BLACK),
-        inputBackgroundColor = SupportColor(
-          getOrNull<String>("inputBackgroundColor") ?: BACKGROUND_INPUT
-        ),
-        inputShape = SupportShape(
-          (getOrNull<Double>("inputBorderRadius") ?: SHAPE_SIZE).roundToInt(),
-          SupportShape.ShapeType.ROUNDED
-        ),
-        inputTextColor = SupportColor(getOrNull<String>("inputTextColor") ?: BLACK),
-        placeholderColor = SupportColor(getOrNull<String>("placeholderColor") ?: DARK_GREY),
-        buttonShape = SupportShape(
-          (getOrNull<Double>("buttonBorderRadius") ?: SHAPE_SIZE).roundToInt(),
-          SupportShape.ShapeType.ROUNDED
-        ),
-        paragraphShape = SupportShape(
-          (getOrNull<Double>("alertBorderRadius") ?: SHAPE_SIZE).roundToInt(),
-          SupportShape.ShapeType.ROUNDED
-        ),
-        submitButtonStyle = toButtonStyle("submitButtonStyle", PRIMARY_COLOR, WHITE),
-        redirectButtonStyle = toButtonStyle("submitButtonStyle", PRIMARY_COLOR, WHITE),
-        backButtonStyle = toButtonStyle("backButtonStyle", DARK_GREY, WHITE),
-        abortButtonStyle = toButtonStyle("abortButtonStyle", DARK_GREY, WHITE),
-        restartButtonStyle = toButtonStyle("restartButtonStyle", DARK_GREY, WHITE),
-        errorParagraphStyle = toParagraphStyle("errorStyle", BACKGROUND_ERROR, WHITE),
-        infoParagraphStyle = toParagraphStyle("infoStyle", BACKGROUND_INFO, WHITE),
-        warningParagraphStyle = toParagraphStyle("warningStyle", BACKGROUND_WARNING, BLACK),
+    styleProvider.apply {
+      theme = XS2ATheme(
+        tintColor = getXS2AColor("tintColor", PRIMARY_COLOR),
+        logoVariation = LogoVariation.valueOf(getString("logoVariation") ?: LOGO_VARIATION),
+        backgroundColor = getXS2AColor("backgroundColor", WHITE),
+        textColor = getXS2AColor("textColor", BLACK),
+        inputBackgroundColor = getXS2AColor("inputBackgroundColor", BACKGROUND_INPUT),
+        inputShape = getXS2AShape("inputBorderRadius", SHAPE_SIZE),
+        inputTextColor = getXS2AColor("inputTextColor", BLACK),
+        placeholderColor = getXS2AColor("placeholderColor", DARK_GREY),
+        buttonShape = getXS2AShape("buttonBorderRadius", SHAPE_SIZE),
+        paragraphShape = getXS2AShape("alertBorderRadius", SHAPE_SIZE),
+        submitButtonStyle = getButtonStyle("submitButtonStyle", PRIMARY_COLOR, WHITE),
+        redirectButtonStyle = getButtonStyle("submitButtonStyle", PRIMARY_COLOR, WHITE),
+        backButtonStyle = getButtonStyle("backButtonStyle", DARK_GREY, WHITE),
+        abortButtonStyle = getButtonStyle("abortButtonStyle", DARK_GREY, WHITE),
+        restartButtonStyle = getButtonStyle("restartButtonStyle", DARK_GREY, WHITE),
+        errorParagraphStyle = getParagraphStyle("errorStyle", BACKGROUND_ERROR, WHITE),
+        infoParagraphStyle = getParagraphStyle("infoStyle", BACKGROUND_INFO, WHITE),
+        warningParagraphStyle = getParagraphStyle("warningStyle", BACKGROUND_WARNING, BLACK),
       )
     }
   }
