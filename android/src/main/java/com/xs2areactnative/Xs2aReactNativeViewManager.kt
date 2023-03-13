@@ -88,7 +88,7 @@ class Xs2aReactNativeViewManager(private val reactContext: ReactContext) :
       }
 
       override fun onStep(newStep: XS2AWizardStep) {
-        onStep(newStep)
+        this@Xs2aReactNativeViewManager.onStep(newStep)
       }
     }
 
