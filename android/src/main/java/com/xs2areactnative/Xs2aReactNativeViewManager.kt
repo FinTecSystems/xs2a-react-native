@@ -50,6 +50,7 @@ class Xs2aReactNativeViewManager(private val reactContext: ReactContext) :
 
   override fun createViewInstance(reactContext: ThemedReactContext) = FrameLayout(reactContext)
 
+  @Deprecated("Deprecated in Java")
   override fun receiveCommand(root: FrameLayout, commandId: Int, args: ReadableArray?) {
     val reactNativeViewId = args?.getInt(0)
 
