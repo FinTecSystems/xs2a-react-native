@@ -10,10 +10,10 @@ Pod::Spec.new do |s|
   s.license      = package["license"]
   s.authors      = package["author"]
 
-  s.platforms    = { :ios => "12.0" }
+  s.platforms    = { :ios => "13.0" }
   s.source       = { :git => "https://github.com/FinTecSystems/xs2a-react-native.git", :tag => "#{s.version}" }
 
-  s.dependency 	 'XS2AiOS', '1.9.1'
+  s.dependency 	 'XS2AiOS', '1.12.0'
 
   s.source_files = "ios/**/*.{h,m,mm,swift}"
 

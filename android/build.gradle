@@ -8,7 +8,7 @@ buildscript {
   }
 
   dependencies {
-    classpath 'com.android.tools.build:gradle:4.2.2'
+    classpath 'com.android.tools.build:gradle:7.3.1'
     // noinspection DifferentKotlinGradleVersion
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
   }
@@ -126,5 +126,14 @@ dependencies {
   // noinspection GradleDynamicVersion
   api 'com.facebook.react:react-native:+'
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-  implementation "com.fintecsystems:xs2awizard:3.10.1"
+  implementation "com.fintecsystems:xs2awizard:5.0.0"
+
+  constraints {
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0") {
+      because("kotlin-stdlib-jdk7 is now a part of kotlin-stdlib")
+    }
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0") {
+      because("kotlin-stdlib-jdk8 is now a part of kotlin-stdlib")
+    }
+  }
 }
