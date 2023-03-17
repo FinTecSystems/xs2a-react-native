@@ -291,10 +291,10 @@ PODS:
     - React-logger (= 0.69.4)
     - React-perflogger (= 0.69.4)
   - SwiftyJSON (5.0.1)
-  - xs2a-react-native (1.3.0):
+  - xs2a-react-native (1.4.0):
     - React-Core
-    - XS2AiOS (= 1.12.0)
-  - XS2AiOS (1.12.0):
+    - XS2AiOS (= 1.12.1)
+  - XS2AiOS (1.12.1):
     - KeychainAccess (= 4.2.2)
     - NVActivityIndicatorView (= 5.1.1)
     - SwiftyJSON (= 5.0.1)
@@ -451,11 +451,11 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 61ee22a8cdf8b6bb2a7fb7b4ba2cc763e5285196
   ReactCommon: 8f67bd7e0a6afade0f20718f859dc8c2275f2e83
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
-  xs2a-react-native: 903bf93fe6a767eb20efaade83e2a910a855d740
-  XS2AiOS: 88e177914382b4deb03ce9edeb2cb8718e465826
+  xs2a-react-native: e7e411a0ff9d70753bea21d7c5c70c36bc472994
+  XS2AiOS: f05330348e5d513a7e436af62f81de9af4c24084
   XS2AiOSNetService: 28fb0fb46933028baa3772b4daa96eb9ee6c4fef
   Yoga: ff994563b2fd98c982ca58e8cd9db2cdaf4dda74
 
 PODFILE CHECKSUM: 0529b15dcb827888d487a48b803e044e1ded6997
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.0
