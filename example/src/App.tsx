@@ -1,18 +1,14 @@
-/* eslint-disable react-native/no-inline-styles */
-import * as React from 'react';
-
-import { StyleSheet, View } from 'react-native';
-import {
-  Xs2aReactNativeViewManager,
-  clearCredentials,
-} from '@fintecsystems/xs2a-react-native';
+import { View, StyleSheet } from 'react-native';
+import { Xs2aReactNativeViewManager } from '@fintecsystems/xs2a-react-native';
 
 export default function App() {
+  /*
   const clearAllStoredCredentials = () => {
     // In Case you are using the Credential Storing Feature
     // you might want to make use of the method:
     // clearCredentials();
   };
+  */
 
   return (
     <View style={styles.container}>
@@ -35,6 +31,9 @@ export default function App() {
         }}
         onSessionError={({ nativeEvent: { errorCode, recoverable } }) => {
           console.log(errorCode, recoverable);
+        }}
+        onStep={({ nativeEvent: { newStep } }) => {
+          console.log('new step: ', newStep);
         }}
         styleProvider={
           {

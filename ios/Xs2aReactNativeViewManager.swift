@@ -21,6 +21,7 @@ class Xs2aReactNativeView: UIView {
 	@objc var onNetworkError: RCTDirectEventBlock?
 	@objc var onSessionError: RCTDirectEventBlock?
 	@objc var onBackButtonTapped: RCTDirectEventBlock?
+	@objc var onStep: RCTDirectEventBlock?
 
 	var xs2aViewController: XS2AViewController?
 	var xs2aConfig: XS2AiOS.Configuration?
@@ -312,11 +313,16 @@ class Xs2aReactNativeView: UIView {
 		func backButtonActionWrapper() {
 			self.onBackButtonTapped?(["currentStep": XS2AiOS.shared.currentStep?.rawValue ?? ""])
 		}
+
+		func onStepWrapper(step: WizardStep?) {
+			self.onStep?(["newStep": step?.rawValue])
+		}
 		
 		XS2AiOS.configure(
 			withConfig: XS2AiOS.Configuration(
 				wizardSessionKey: wizardSessionKey,
 				backButtonAction: backButtonActionWrapper,
+				onStepChanged: onStepWrapper,
 				language: xs2aLanguage
 			),
 			withStyle: style ?? XS2AiOS.StyleProvider()
