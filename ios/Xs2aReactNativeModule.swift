@@ -6,7 +6,7 @@ class Xs2aReactNativeModule: NSObject {
 	@objc
 	public func clearCredentials() {
 		do {
-			try XS2AiOS.clearKeychain()
+			try XS2A.clearKeychain()
 		} catch _ {
 			
 		}
