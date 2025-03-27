@@ -12,6 +12,7 @@ RCT_EXPORT_VIEW_PROPERTY(onAbort, RCTDirectEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onNetworkError, RCTDirectEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onSessionError, RCTDirectEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onBackButtonTapped, RCTDirectEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onStep, RCTDirectEventBlock)
 
 @end
 

@@ -1,12 +1,16 @@
 import {
-  findNodeHandle,
-  Platform,
   requireNativeComponent,
-  NativeModules,
   UIManager,
-  ViewStyle,
+  NativeModules,
+  Platform,
+  type ViewStyle,
 } from 'react-native';
-import * as React from 'react';
+
+const LINKING_ERROR =
+  `The package '@fintecsystems/xs2a-react-native' doesn't seem to be linked. Make sure: \n\n` +
+  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
+  '- You rebuilt the app after installing the package\n' +
+  '- You are not using Expo Go\n';
 
 type ButtonStyle = {
   textColor: String;
@@ -37,6 +41,12 @@ interface SessionErrorCallback {
   };
 }
 
+interface OnStepCallback {
+  nativeEvent: {
+    newStep: string | undefined;
+  };
+}
+
 type Xs2aReactNativeProps = {
   wizardSessionKey: string;
   language?: 'de' | 'en' | 'fr' | 'es' | 'it';
@@ -45,6 +55,7 @@ type Xs2aReactNativeProps = {
   onNetworkError: Function;
   onSessionError: (arg0: SessionErrorCallback) => void;
   onBackButtonTapped: (arg0: BackButtonTappedCallback) => void;
+  onStep: (arg0: OnStepCallback) => void;
   styleProvider?: {
     font?: String;
     tintColor?: String;
@@ -68,35 +79,28 @@ type Xs2aReactNativeProps = {
   style: ViewStyle;
 };
 
-const NativeViewManager = requireNativeComponent<Xs2aReactNativeProps>(
-  'Xs2aReactNativeView'
-);
-
-const NativeModule = NativeModules.Xs2aReactNativeModule;
-
-const AndroidView = (props: Xs2aReactNativeProps) => {
-  const ref = React.useRef(null);
-
-  React.useEffect(() => {
-    const viewId = findNodeHandle(ref.current);
-
-    requestAnimationFrame(() => {
-      UIManager.dispatchViewManagerCommand(
-        viewId,
-        UIManager.getViewManagerConfig('Xs2aReactNativeView').Commands.create,
-        [viewId]
-      );
-    });
-  }, []);
-
-  return <NativeViewManager ref={ref} {...props} />;
-};
+const ComponentName = 'Xs2aReactNativeView';
 
 export const Xs2aReactNativeViewManager =
-  Platform.OS === 'android' ? AndroidView : NativeViewManager;
+  UIManager.getViewManagerConfig(ComponentName) != null
+    ? requireNativeComponent<Xs2aReactNativeProps>(ComponentName)
+    : () => {
+        throw new Error(LINKING_ERROR);
+      };
 
-export const clearCredentials = () => {
-  NativeModule.clearCredentials();
-};
+const Xs2aReactNativeModule = NativeModules.Xs2aReactNativeModule
+  ? NativeModules.Xs2aReactNativeModule
+  : new Proxy(
+      {},
+      {
+        get() {
+          throw new Error(LINKING_ERROR);
+        },
+      }
+    );
+
+export function clearCredentials(): void {
+  return Xs2aReactNativeModule.clearCredentials();
+}
 
 export default Xs2aReactNativeViewManager;
