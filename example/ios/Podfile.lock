@@ -1505,7 +1505,7 @@ PODS:
     - React-utils (= 0.77.2)
   - SocketRocket (0.7.1)
   - SwiftyJSON (5.0.1)
-  - xs2a-react-native (1.4.1):
+  - xs2a-react-native (2.0.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1819,10 +1819,10 @@ SPEC CHECKSUMS:
   ReactCommon: 7763e59534d58e15f8f22121cdfe319040e08888
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
-  xs2a-react-native: d46140ccf8a12c4d7755cac394ab192ea90522cb
+  xs2a-react-native: 78437b57be28bebae55580cf1e15fd28efbe5383
   XS2AiOS: 0b219448dd274e086f19a0ec3d582cbebd932408
   Yoga: 31a098f74c16780569aebd614a0f37a907de0189
 
 PODFILE CHECKSUM: 7ccd17a3ae65644e7852cdc6afe271cbcde5e50b
 
-COCOAPODS: 1.16.2
+COCOAPODS: 1.15.2
