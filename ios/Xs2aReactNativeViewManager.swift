@@ -21,20 +21,21 @@ class Xs2aReactNativeView: UIView {
 	@objc var onNetworkError: RCTDirectEventBlock?
 	@objc var onSessionError: RCTDirectEventBlock?
 	@objc var onBackButtonTapped: RCTDirectEventBlock?
+	@objc var onStep: RCTDirectEventBlock?
 
 	var xs2aViewController: XS2AViewController?
-	var xs2aConfig: XS2AiOS.Configuration?
-	var style: XS2AiOS.StyleProvider?
+	var xs2aConfig: XS2A.Configuration?
+	var style: XS2A.StyleProvider?
 	
 	@objc
 	var wizardSessionKey: String = "" {
 		didSet {
-			xs2aConfig = XS2AiOS.Configuration(wizardSessionKey: wizardSessionKey)
+			xs2aConfig = XS2A.Configuration(wizardSessionKey: wizardSessionKey)
 			setNeedsLayout()
 		}
 	}
 	
-	var xs2aLanguage: XS2AiOS.Language?
+	var xs2aLanguage: XS2A.Language?
 	
 	@objc
 	var language: String? = nil {
@@ -44,7 +45,7 @@ class Xs2aReactNativeView: UIView {
 			}
 
 			if (["de", "en", "fr", "es", "it"].contains(language)) {
-				xs2aLanguage = XS2AiOS.Language(rawValue: language)
+				xs2aLanguage = XS2A.Language(rawValue: language)
 			}
 			setNeedsLayout()
 		}
@@ -55,7 +56,7 @@ class Xs2aReactNativeView: UIView {
 		didSet {
 			var font: FontName = .systemDefault
 			var tintColor: UIColor = UIColor(red: 0.11, green: 0.45, blue: 0.72, alpha: 1.0)
-			var logoVariation: XS2AiOS.StyleProvider.LogoVariation = .standard
+			var logoVariation: XS2A.StyleProvider.LogoVariation = .standard
 			var backgroundColor: UIColor = .white
 			var textColor: UIColor = UIColor(red: 0.27, green: 0.27, blue: 0.28, alpha: 1.0)
 			var inputBackgroundColor: UIColor = UIColor(red: 0.91, green: 0.95, blue: 0.97, alpha: 1.0)
@@ -63,14 +64,14 @@ class Xs2aReactNativeView: UIView {
 			var inputTextColor: UIColor = UIColor(red: 0.27, green: 0.27, blue: 0.28, alpha: 1.0)
 			var placeholderColor: UIColor = .systemGray
 			var buttonBorderRadius: CGFloat = 6
-			var submitButtonStyle = XS2AiOS.ButtonStyle(textColor: .white, backgroundColor: UIColor(red: 0.11, green: 0.45, blue: 0.72, alpha: 1.0))
-			var backButtonStyle = XS2AiOS.ButtonStyle(textColor: .white, backgroundColor: .systemGray)
-			var abortButtonStyle = XS2AiOS.ButtonStyle(textColor: .white, backgroundColor: .systemGray)
-			var restartButtonStyle = XS2AiOS.ButtonStyle(textColor: .white, backgroundColor: .systemGray)
+			var submitButtonStyle = XS2A.ButtonStyle(textColor: .white, backgroundColor: UIColor(red: 0.11, green: 0.45, blue: 0.72, alpha: 1.0))
+			var backButtonStyle = XS2A.ButtonStyle(textColor: .white, backgroundColor: .systemGray)
+			var abortButtonStyle = XS2A.ButtonStyle(textColor: .white, backgroundColor: .systemGray)
+			var restartButtonStyle = XS2A.ButtonStyle(textColor: .white, backgroundColor: .systemGray)
 			var alertBorderRadius: CGFloat = 6
-			var errorStyle = XS2AiOS.AlertStyle(textColor: .white, backgroundColor: .systemRed)
-			var warningStyle = XS2AiOS.AlertStyle(textColor: .black, backgroundColor: .systemOrange)
-			var infoStyle = XS2AiOS.AlertStyle(textColor: .white, backgroundColor: UIColor(red: 0.11, green: 0.45, blue: 0.72, alpha: 1.0))
+			var errorStyle = XS2A.AlertStyle(textColor: .white, backgroundColor: .systemRed)
+			var warningStyle = XS2A.AlertStyle(textColor: .black, backgroundColor: .systemOrange)
+			var infoStyle = XS2A.AlertStyle(textColor: .white, backgroundColor: UIColor(red: 0.11, green: 0.45, blue: 0.72, alpha: 1.0))
 																   
 			if let providedFont = styleProvider["font"] as? String {
 				font = .custom(providedFont)
@@ -144,7 +145,7 @@ class Xs2aReactNativeView: UIView {
 					}
 				}
 				
-				submitButtonStyle = XS2AiOS.ButtonStyle(textColor: textColor, backgroundColor: backgroundColor)
+				submitButtonStyle = XS2A.ButtonStyle(textColor: textColor, backgroundColor: backgroundColor)
 			}
 			
 			if let providedBackButtonStyle = styleProvider["backButtonStyle"] as? NSDictionary {
@@ -163,7 +164,7 @@ class Xs2aReactNativeView: UIView {
 					}
 				}
 				
-				backButtonStyle = XS2AiOS.ButtonStyle(textColor: textColor, backgroundColor: backgroundColor)
+				backButtonStyle = XS2A.ButtonStyle(textColor: textColor, backgroundColor: backgroundColor)
 			}
 			
 			if let providedAbortButtonStyle = styleProvider["abortButtonStyle"] as? NSDictionary {
@@ -182,7 +183,7 @@ class Xs2aReactNativeView: UIView {
 					}
 				}
 				
-				abortButtonStyle = XS2AiOS.ButtonStyle(textColor: textColor, backgroundColor: backgroundColor)
+				abortButtonStyle = XS2A.ButtonStyle(textColor: textColor, backgroundColor: backgroundColor)
 			}
 			
 			if let providedRestartButtonStyle = styleProvider["restartButtonStyle"] as? NSDictionary {
@@ -201,7 +202,7 @@ class Xs2aReactNativeView: UIView {
 					}
 				}
 				
-				restartButtonStyle = XS2AiOS.ButtonStyle(textColor: textColor, backgroundColor: backgroundColor)
+				restartButtonStyle = XS2A.ButtonStyle(textColor: textColor, backgroundColor: backgroundColor)
 			}
 			
 			if let providedAlertBorderRadius = styleProvider["alertBorderRadius"] as? CGFloat {
@@ -224,7 +225,7 @@ class Xs2aReactNativeView: UIView {
 					}
 				}
 				
-				errorStyle = XS2AiOS.AlertStyle(textColor: textColor, backgroundColor: backgroundColor)
+				errorStyle = XS2A.AlertStyle(textColor: textColor, backgroundColor: backgroundColor)
 			}
 			
 			if let providedWarningStyle = styleProvider["warningStyle"] as? NSDictionary {
@@ -243,7 +244,7 @@ class Xs2aReactNativeView: UIView {
 					}
 				}
 				
-				warningStyle = XS2AiOS.AlertStyle(textColor: textColor, backgroundColor: backgroundColor)
+				warningStyle = XS2A.AlertStyle(textColor: textColor, backgroundColor: backgroundColor)
 			}
 			
 			if let providedInfoStyle = styleProvider["infoStyle"] as? NSDictionary {
@@ -262,10 +263,10 @@ class Xs2aReactNativeView: UIView {
 					}
 				}
 				
-				infoStyle = XS2AiOS.AlertStyle(textColor: textColor, backgroundColor: backgroundColor)
+				infoStyle = XS2A.AlertStyle(textColor: textColor, backgroundColor: backgroundColor)
 			}
 
-			style = XS2AiOS.StyleProvider(
+			style = XS2A.StyleProvider(
 				font: font,
 				tintColor: tintColor,
 				logoVariation: logoVariation,
@@ -310,16 +311,21 @@ class Xs2aReactNativeView: UIView {
 		}
 		
 		func backButtonActionWrapper() {
-			self.onBackButtonTapped?(["currentStep": XS2AiOS.shared.currentStep?.rawValue ?? ""])
+			self.onBackButtonTapped?(["currentStep": XS2A.shared.currentStep?.rawValue ?? ""])
+		}
+
+		func onStepWrapper(step: WizardStep?) {
+			self.onStep?(["newStep": step?.rawValue])
 		}
 		
-		XS2AiOS.configure(
-			withConfig: XS2AiOS.Configuration(
+		XS2A.configure(
+			withConfig: XS2A.Configuration(
 				wizardSessionKey: wizardSessionKey,
 				backButtonAction: backButtonActionWrapper,
+				onStepChanged: onStepWrapper,
 				language: xs2aLanguage
 			),
-			withStyle: style ?? XS2AiOS.StyleProvider()
+			withStyle: style ?? XS2A.StyleProvider()
 		)
 
 		let vc = XS2AViewController { result in
