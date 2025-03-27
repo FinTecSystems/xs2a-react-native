@@ -40,6 +40,9 @@ jobs:
       - name: Setup
         uses: ./.github/actions/setup
 
+      - name: Login to NPM registry
+        run: npm set "//registry.npmjs.org/:_authToken" ${{ secrets.NPM_ACCESS_TOKEN }}
+
       - name: Build package
         run: yarn prepare
 
