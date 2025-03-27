@@ -43,7 +43,7 @@
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build lib",
     "prepare": "bob build",
-    "release": "release-it"
+    "release": "release-it --no-git"
   },
   "keywords": [
     "react-native",
@@ -110,7 +110,11 @@
   },
   "release-it": {
     "npm": {
-      "publish": true
+      "publish": true,
+      "versionArgs": ["--allow-same-version", "--workspaces-update=false"]
+    },
+    "github": {
+      "release": false
     }
   },
   "eslintConfig": {
