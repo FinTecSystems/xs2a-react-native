@@ -106,14 +106,13 @@ class Xs2aReactNativeViewManager : SimpleViewManager<View>() {
 
     styleProvider.apply {
       _theme.value = XS2ATheme(
-        tintColor = getXS2AColor("tintColor", PRIMARY_COLOR),
+        primaryColor = getXS2AColor("tintColor", PRIMARY_COLOR),
         logoVariation = LogoVariation.valueOf(getString("logoVariation") ?: LOGO_VARIATION),
         backgroundColor = getXS2AColor("backgroundColor", WHITE),
         textColor = getXS2AColor("textColor", BLACK),
         inputBackgroundColor = getXS2AColor("inputBackgroundColor", BACKGROUND_INPUT),
         inputShape = getXS2AShape("inputBorderRadius", SHAPE_SIZE),
-        inputTextColor = getXS2AColor("inputTextColor", BLACK),
-        placeholderColor = getXS2AColor("placeholderColor", DARK_GREY),
+        onSurfaceVariantColor = getXS2AColor("placeholderColor", DARK_GREY),
         buttonShape = getXS2AShape("buttonBorderRadius", SHAPE_SIZE),
         paragraphShape = getXS2AShape("alertBorderRadius", SHAPE_SIZE),
         submitButtonStyle = getButtonStyle("submitButtonStyle", PRIMARY_COLOR, WHITE),
