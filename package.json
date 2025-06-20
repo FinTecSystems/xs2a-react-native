@@ -1,6 +1,6 @@
 {
   "name": "@fintecsystems/xs2a-react-native",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Integrate XS2A from Tink Germany into your React Native App.",
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",
@@ -111,7 +111,10 @@
   "release-it": {
     "npm": {
       "publish": true,
-      "versionArgs": ["--allow-same-version", "--workspaces-update=false"]
+      "versionArgs": [
+        "--allow-same-version",
+        "--workspaces-update=false"
+      ]
     },
     "github": {
       "release": false

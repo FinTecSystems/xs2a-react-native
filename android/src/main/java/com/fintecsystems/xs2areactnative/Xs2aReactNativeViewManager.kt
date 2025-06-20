@@ -104,18 +104,29 @@ class Xs2aReactNativeViewManager : SimpleViewManager<View>() {
       return
     }
 
+    // TODO: Add font configuration.
+
     styleProvider.apply {
       _theme.value = XS2ATheme(
-        tintColor = getXS2AColor("tintColor", PRIMARY_COLOR),
+        primaryColor = getXS2AColor("tintColor", PRIMARY_COLOR),
+        onPrimaryColor = getXS2AColor("onTintColor", WHITE),
+        errorColor = getXS2AColor("errorColor", ERROR_COLOR),
         logoVariation = LogoVariation.valueOf(getString("logoVariation") ?: LOGO_VARIATION),
         backgroundColor = getXS2AColor("backgroundColor", WHITE),
         textColor = getXS2AColor("textColor", BLACK),
         inputBackgroundColor = getXS2AColor("inputBackgroundColor", BACKGROUND_INPUT),
         inputShape = getXS2AShape("inputBorderRadius", SHAPE_SIZE),
-        inputTextColor = getXS2AColor("inputTextColor", BLACK),
-        placeholderColor = getXS2AColor("placeholderColor", DARK_GREY),
-        buttonShape = getXS2AShape("buttonBorderRadius", SHAPE_SIZE),
+        // inputType = getXS2AShape("inputType", SHAPE_SIZE), // TODO
+        surfaceColor = getXS2AColor("surfaceColor", WHITE),
+        onSurfaceColor = getXS2AColor("onSurfaceColor", BLACK),
+        onSurfaceVariantColor = getXS2AColor("placeholderColor", DARK_GREY),
+        loadingIndicatorBackgroundColor = getXS2AColor("loadingIndicatorBackgroundColor", BACKGROUND_TRANSLUCENT), // TODO
+        // buttonShape = getXS2AShape("buttonBorderRadius", SHAPE_SIZE), // TODO
+        // buttonSize = getXS2AShape("buttonSize", SHAPE_SIZE), // TODO
+        // buttonHorizontalAlignment = getXS2AShape("buttonHorizontalAlignment", SHAPE_SIZE), // TODO
         paragraphShape = getXS2AShape("alertBorderRadius", SHAPE_SIZE),
+        // paragraphPadding = getXS2AShape("paragraphPadding", SHAPE_SIZE), // TODO
+        // paragraphMargin = getXS2AShape("paragraphMargin", SHAPE_SIZE), // TODO
         submitButtonStyle = getButtonStyle("submitButtonStyle", PRIMARY_COLOR, WHITE),
         redirectButtonStyle = getButtonStyle("submitButtonStyle", PRIMARY_COLOR, WHITE),
         backButtonStyle = getButtonStyle("backButtonStyle", DARK_GREY, WHITE),
@@ -124,6 +135,8 @@ class Xs2aReactNativeViewManager : SimpleViewManager<View>() {
         errorParagraphStyle = getParagraphStyle("errorStyle", BACKGROUND_ERROR, WHITE),
         infoParagraphStyle = getParagraphStyle("infoStyle", BACKGROUND_INFO, WHITE),
         warningParagraphStyle = getParagraphStyle("warningStyle", BACKGROUND_WARNING, BLACK),
+        connectionStatusBannerBackgroundColor = getXS2AColor("connectionStatusBannerBackgroundColor", BACKGROUND_WARNING),
+        connectionStatusBannerTextColor = getXS2AColor("connectionStatusBannerTextColor", BLACK),
       )
     }
   }
@@ -205,10 +218,12 @@ class Xs2aReactNativeViewManager : SimpleViewManager<View>() {
     private const val EVENT_STEP_REGISTRATION_NAME = "onStep"
 
     private const val PRIMARY_COLOR = "#427783"
-    private const val BACKGROUND_INPUT = "#14000000"
-    private const val BACKGROUND_ERROR = "#EA544A"
-    private const val BACKGROUND_INFO = "#0E9EC2"
+    private const val ERROR_COLOR = "#DB271A"
+    private const val BACKGROUND_INPUT = "#F5F5F5"
+    private const val BACKGROUND_ERROR = "#DB271A"
+    private const val BACKGROUND_INFO = "#0B809D"
     private const val BACKGROUND_WARNING = "#FEAE22"
+    private const val BACKGROUND_TRANSLUCENT = "#AAFFFFFF"
     private const val WHITE = "#ffffff"
     private const val BLACK = "#000000"
     private const val DARK_GREY = "#808080"

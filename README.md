@@ -3,6 +3,15 @@
 Integrate XS2A from Tink Germany into your React Native App.
 This React Native SDK is a wrapper of [xs2a-ios](https://github.com/FinTecSystems/xs2a-ios) and [xs2a-android](https://github.com/FinTecSystems/xs2a-android).
 
+## Upgrading from v1
+
+Newer React Native versions require the following entry in your `tsconfig.json`:
+
+```javascript
+"moduleResolution": "bundler",
+```
+Please make sure you have this field set, otherwise you'll encounter import errors.
+
 ## Requirements
 
 - iOS Version >= 13
@@ -114,7 +123,7 @@ import Xs2aReactNativeViewManager from "@fintecsystems/xs2a-react-native";
     // Detailed error descriptions can be found here: https://github.com/FinTecSystems/xs2a-ios#configure-and-present-the-view
     console.log(errorCode, recoverable);
   }}
-  // All styles are optional
+  // All styles are optional. For all available properties, refer to Xs2aReactNativeStyleProvider.
   styleProvider={{
     tintColor: '#ff0000',
     logoVariation: 'STANDARD',

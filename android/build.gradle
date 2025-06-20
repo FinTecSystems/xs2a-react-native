@@ -83,7 +83,7 @@ repositories {
 dependencies {
   implementation "com.facebook.react:react-android"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-  implementation "com.fintecsystems:xs2awizard:5.2.6"
-  implementation "androidx.compose.material:material:1.7.8"
+  implementation "com.fintecsystems:xs2awizard:6.0.0"
+  implementation "androidx.compose.ui:ui:1.8.2"
 }
 
