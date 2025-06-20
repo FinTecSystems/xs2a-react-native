@@ -47,6 +47,34 @@ interface OnStepCallback {
   };
 }
 
+type Xs2aReactNativeStyleProvider = {
+  font?: String;
+  tintColor?: String;
+  onTintColor?: String; // Android only
+  errorColor?: String; // Android only
+  surfaceColor?: String; // Android only
+  onSurfaceColor?: String; // Android only
+  loadingIndicatorBackgroundColor?: String; // Android only
+  connectionStatusBannerBackgroundColor?: String; // Android only
+  connectionStatusBannerTextColor?: String; // Android only
+  logoVariation?: 'STANDARD' | 'WHITE' | 'BLACK';
+  backgroundColor?: String;
+  textColor?: String;
+  inputBackgroundColor?: String;
+  inputBorderRadius?: Number;
+  inputTextColor?: String;
+  placeholderColor?: String;
+  buttonBorderRadius?: Number;
+  submitButtonStyle?: ButtonStyle;
+  backButtonStyle?: ButtonStyle;
+  abortButtonStyle?: ButtonStyle;
+  restartButtonStyle?: ButtonStyle;
+  alertBorderRadius?: Number;
+  errorStyle?: AlertStyle;
+  warningStyle?: AlertStyle;
+  infoStyle?: AlertStyle;
+};
+
 type Xs2aReactNativeProps = {
   wizardSessionKey: string;
   language?: 'de' | 'en' | 'fr' | 'es' | 'it';
@@ -56,26 +84,7 @@ type Xs2aReactNativeProps = {
   onSessionError: (arg0: SessionErrorCallback) => void;
   onBackButtonTapped: (arg0: BackButtonTappedCallback) => void;
   onStep: (arg0: OnStepCallback) => void;
-  styleProvider?: {
-    font?: String;
-    tintColor?: String;
-    logoVariation?: 'STANDARD' | 'WHITE' | 'BLACK';
-    backgroundColor?: String;
-    textColor?: String;
-    inputBackgroundColor?: String;
-    inputBorderRadius?: Number;
-    inputTextColor?: String;
-    placeholderColor?: String;
-    buttonBorderRadius?: Number;
-    submitButtonStyle?: ButtonStyle;
-    backButtonStyle?: ButtonStyle;
-    abortButtonStyle?: ButtonStyle;
-    restartButtonStyle?: ButtonStyle;
-    alertBorderRadius?: Number;
-    errorStyle?: AlertStyle;
-    warningStyle?: AlertStyle;
-    infoStyle?: AlertStyle;
-  };
+  styleProvider?: Xs2aReactNativeStyleProvider;
   style: ViewStyle;
 };
 
