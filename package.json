@@ -111,7 +111,10 @@
   "release-it": {
     "npm": {
       "publish": true,
-      "versionArgs": ["--allow-same-version", "--workspaces-update=false"]
+      "versionArgs": [
+        "--allow-same-version",
+        "--workspaces-update=false"
+      ]
     },
     "github": {
       "release": false
