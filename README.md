@@ -123,7 +123,7 @@ import Xs2aReactNativeViewManager from "@fintecsystems/xs2a-react-native";
     // Detailed error descriptions can be found here: https://github.com/FinTecSystems/xs2a-ios#configure-and-present-the-view
     console.log(errorCode, recoverable);
   }}
-  // All styles are optional
+  // All styles are optional. For all available properties, refer to Xs2aReactNativeStyleProvider.
   styleProvider={{
     tintColor: '#ff0000',
     logoVariation: 'STANDARD',
