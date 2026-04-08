@@ -1811,9 +1811,9 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
-    - XS2AiOS (= 2.2.0)
+    - XS2AiOS (= 2.3.0)
     - Yoga
-  - XS2AiOS (2.2.0):
+  - XS2AiOS (2.3.0):
     - KeychainAccess (= 4.2.2)
     - NVActivityIndicatorView (= 5.1.1)
     - SwiftyJSON (= 5.0.1)
@@ -2130,10 +2130,10 @@ SPEC CHECKSUMS:
   ReactCommon: 07572bf9e687c8a52fbe4a3641e9e3a1a477c78e
   ReactNativeDependencies: 5134c7e03a5b4a45adc898262499ef788edf1673
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
-  xs2a-react-native: a994dcd1b192bcb0be718478888c52acde870b44
-  XS2AiOS: 3817b96b33f1cd23bd3efed6e359202ee03c66a7
+  xs2a-react-native: 4dd620c9d8b0867b236e6e508e39eba1c817370d
+  XS2AiOS: f2afc4180e4c33d05823bbd72c16775a6569ca63
   Yoga: c0b3f2c7e8d3e327e450223a2414ca3fa296b9a2
 
 PODFILE CHECKSUM: 7ccd17a3ae65644e7852cdc6afe271cbcde5e50b
 
-COCOAPODS: 1.15.2
+COCOAPODS: 1.16.2
