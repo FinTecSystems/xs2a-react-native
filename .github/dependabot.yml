@@ -5,7 +5,22 @@
 
 version: 2
 updates:
-  - package-ecosystem: "yarn" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  - package-ecosystem: "yarn"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+  
+  - package-ecosystem: "gradle"
+    directory: "/android"
+    schedule:
+      interval: "weekly"
+  
+  - package-ecosystem: "swift"
+    directory: "/"
     schedule:
       interval: "weekly"
