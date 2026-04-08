@@ -86,6 +86,7 @@ jobs:
         if: env.turbo_cache_hit != 1
         run: |
           /bin/bash -c "yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses > /dev/null"
+          echo "sdk.dir=$ANDROID_HOME" > example/android/local.properties
 
       - name: Cache Gradle
         if: env.turbo_cache_hit != 1
