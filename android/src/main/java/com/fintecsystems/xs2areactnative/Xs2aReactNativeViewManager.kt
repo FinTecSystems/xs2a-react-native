@@ -46,7 +46,7 @@ class Xs2aReactNativeViewManager : SimpleViewManager<View>() {
 
   override fun createViewInstance(reactContext: ThemedReactContext): View {
     return ComposeView(reactContext.reactApplicationContext.currentActivity!!).apply {
-      setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
+      setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnDetachedFromWindowOrReleasedFromPool)
 
       val xs2aCallbackListener = object : XS2AWizardCallbackListener {
         override fun onAbort() {
@@ -80,12 +80,12 @@ class Xs2aReactNativeViewManager : SimpleViewManager<View>() {
         val language by this@Xs2aReactNativeViewManager._language
 
         sessionKey?.let {
-          XS2AWizard(
-            sessionKey = it,
-            callbackListener = xs2aCallbackListener,
-            theme = theme,
-            language = language
-          )
+            XS2AWizard(
+              sessionKey = it,
+              callbackListener = xs2aCallbackListener,
+              theme = theme,
+              language = language
+            )
         }
       }
     }
