@@ -4,9 +4,9 @@ PODS:
     - hermes-engine/Pre-built (= 250829098.0.9)
   - hermes-engine/Pre-built (250829098.0.9)
   - KeychainAccess (4.2.2)
-  - NVActivityIndicatorView (5.1.1):
-    - NVActivityIndicatorView/Base (= 5.1.1)
-  - NVActivityIndicatorView/Base (5.1.1)
+  - NVActivityIndicatorView (5.2.0):
+    - NVActivityIndicatorView/Base (= 5.2.0)
+  - NVActivityIndicatorView/Base (5.2.0)
   - RCTDeprecation (0.84.1)
   - RCTRequired (0.84.1)
   - RCTSwiftUI (0.84.1)
@@ -1789,8 +1789,8 @@ PODS:
     - React-utils (= 0.84.1)
     - ReactNativeDependencies
   - ReactNativeDependencies (0.84.1)
-  - SwiftyJSON (5.0.1)
-  - xs2a-react-native (2.1.0):
+  - SwiftyJSON (5.0.2)
+  - xs2a-react-native (2.2.0):
     - hermes-engine
     - RCTRequired
     - RCTTypeSafety
@@ -1811,12 +1811,12 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
-    - XS2AiOS (= 2.3.0)
+    - XS2AiOS (= 2.3.2)
     - Yoga
-  - XS2AiOS (2.3.0):
+  - XS2AiOS (2.3.2):
     - KeychainAccess (= 4.2.2)
-    - NVActivityIndicatorView (= 5.1.1)
-    - SwiftyJSON (= 5.0.1)
+    - NVActivityIndicatorView (= 5.2.0)
+    - SwiftyJSON (= 5.0.2)
   - Yoga (0.0.0)
 
 DEPENDENCIES:
@@ -2058,7 +2058,7 @@ SPEC CHECKSUMS:
   FBLazyVector: e97c19a5a442429d1988f182a1940fb08df514da
   hermes-engine: f2f5052a2cab289dd9222fa7b6517d875f1d65ba
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
-  NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
+  NVActivityIndicatorView: fe52a6a68664c2df8991d7d9e3d86d8d19453c53
   RCTDeprecation: af44b104091a34482596cd9bd7e8d90c4e9b4bd7
   RCTRequired: bb77b070f75f53398ce43c0aaaa58337cebe2bf6
   RCTSwiftUI: afc0a0a635860da1040a0b894bfd529da06d7810
@@ -2129,9 +2129,9 @@ SPEC CHECKSUMS:
   ReactCodegen: 797de5178718324c6eba3327b07f9a423fbd5787
   ReactCommon: 07572bf9e687c8a52fbe4a3641e9e3a1a477c78e
   ReactNativeDependencies: 5134c7e03a5b4a45adc898262499ef788edf1673
-  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
-  xs2a-react-native: 4dd620c9d8b0867b236e6e508e39eba1c817370d
-  XS2AiOS: f2afc4180e4c33d05823bbd72c16775a6569ca63
+  SwiftyJSON: f5b1bf1cd8dd53cd25887ac0eabcfd92301c6a5a
+  xs2a-react-native: 1062e619e924d75eb274fd425970d06572241821
+  XS2AiOS: 1ff5a4b68b437f3cd8a8ecc141940c719849ab30
   Yoga: c0b3f2c7e8d3e327e450223a2414ca3fa296b9a2
 
 PODFILE CHECKSUM: 7ccd17a3ae65644e7852cdc6afe271cbcde5e50b
