@@ -1998,7 +1998,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@inquirer/checkbox@npm:^5.1.2":
+"@inquirer/checkbox@npm:^5.1.4":
   version: 5.1.4
   resolution: "@inquirer/checkbox@npm:5.1.4"
   dependencies:
@@ -2015,7 +2015,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@inquirer/confirm@npm:^6.0.10":
+"@inquirer/confirm@npm:^6.0.12":
   version: 6.0.12
   resolution: "@inquirer/confirm@npm:6.0.12"
   dependencies:
@@ -2050,7 +2050,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@inquirer/editor@npm:^5.0.10":
+"@inquirer/editor@npm:^5.1.1":
   version: 5.1.1
   resolution: "@inquirer/editor@npm:5.1.1"
   dependencies:
@@ -2066,7 +2066,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@inquirer/expand@npm:^5.0.10":
+"@inquirer/expand@npm:^5.0.13":
   version: 5.0.13
   resolution: "@inquirer/expand@npm:5.0.13"
   dependencies:
@@ -2103,7 +2103,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@inquirer/input@npm:^5.0.10":
+"@inquirer/input@npm:^5.0.12":
   version: 5.0.12
   resolution: "@inquirer/input@npm:5.0.12"
   dependencies:
@@ -2118,7 +2118,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@inquirer/number@npm:^4.0.10":
+"@inquirer/number@npm:^4.0.12":
   version: 4.0.12
   resolution: "@inquirer/number@npm:4.0.12"
   dependencies:
@@ -2133,7 +2133,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@inquirer/password@npm:^5.0.10":
+"@inquirer/password@npm:^5.0.12":
   version: 5.0.12
   resolution: "@inquirer/password@npm:5.0.12"
   dependencies:
@@ -2149,30 +2149,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@inquirer/prompts@npm:8.3.2":
-  version: 8.3.2
-  resolution: "@inquirer/prompts@npm:8.3.2"
+"@inquirer/prompts@npm:8.4.2":
+  version: 8.4.2
+  resolution: "@inquirer/prompts@npm:8.4.2"
   dependencies:
-    "@inquirer/checkbox": ^5.1.2
-    "@inquirer/confirm": ^6.0.10
-    "@inquirer/editor": ^5.0.10
-    "@inquirer/expand": ^5.0.10
-    "@inquirer/input": ^5.0.10
-    "@inquirer/number": ^4.0.10
-    "@inquirer/password": ^5.0.10
-    "@inquirer/rawlist": ^5.2.6
-    "@inquirer/search": ^4.1.6
-    "@inquirer/select": ^5.1.2
+    "@inquirer/checkbox": ^5.1.4
+    "@inquirer/confirm": ^6.0.12
+    "@inquirer/editor": ^5.1.1
+    "@inquirer/expand": ^5.0.13
+    "@inquirer/input": ^5.0.12
+    "@inquirer/number": ^4.0.12
+    "@inquirer/password": ^5.0.12
+    "@inquirer/rawlist": ^5.2.8
+    "@inquirer/search": ^4.1.8
+    "@inquirer/select": ^5.1.4
   peerDependencies:
     "@types/node": ">=18"
   peerDependenciesMeta:
     "@types/node":
       optional: true
-  checksum: 1a211f74be5dd4175f00d966c138b8db6691ac162fb4c0f8f6b30eca1ba73cc54c987073655d5b109ae7aaaec2d76b82c770e41f29eb94cd58a2e0fa771c0f44
+  checksum: cde6cc23467a9ca40ca88bce8c5baae3c72e03174c9d61e2ab4e8eb977983eb3948abe2594e0cf85a162ee6ea4495b30cbfffa2a025339ae69c8cbdf2829b508
   languageName: node
   linkType: hard
 
-"@inquirer/rawlist@npm:^5.2.6":
+"@inquirer/rawlist@npm:^5.2.8":
   version: 5.2.8
   resolution: "@inquirer/rawlist@npm:5.2.8"
   dependencies:
@@ -2187,7 +2187,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@inquirer/search@npm:^4.1.6":
+"@inquirer/search@npm:^4.1.8":
   version: 4.1.8
   resolution: "@inquirer/search@npm:4.1.8"
   dependencies:
@@ -2203,7 +2203,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@inquirer/select@npm:^5.1.2":
+"@inquirer/select@npm:^5.1.4":
   version: 5.1.4
   resolution: "@inquirer/select@npm:5.1.4"
   dependencies:
@@ -2732,15 +2732,6 @@ __metadata:
     "@nodelib/fs.scandir": 2.1.5
     fastq: ^1.6.0
   checksum: 190c643f156d8f8f277bf2a6078af1ffde1fd43f498f187c2db24d35b4b4b5785c02c7dc52e356497b9a1b65b13edc996de08de0b961c32844364da02986dc53
-  languageName: node
-  linkType: hard
-
-"@nodeutils/defaults-deep@npm:1.1.0":
-  version: 1.1.0
-  resolution: "@nodeutils/defaults-deep@npm:1.1.0"
-  dependencies:
-    lodash: ^4.15.0
-  checksum: 205ff2a4ae2a00c2c640317f888c075bd6429206e26b6c9c99bb691fa05c23274fda2a1023d97fad0ee06ca82232cc058c7c1e06350a37cda5a58fe5aff00c5c
   languageName: node
   linkType: hard
 
@@ -5579,7 +5570,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"defu@npm:^6.1.4":
+"defu@npm:^6.1.4, defu@npm:^6.1.7":
   version: 6.1.7
   resolution: "defu@npm:6.1.7"
   checksum: aeca3fc4a1e9f5a99c8b2cd3efa478dbbda1b344e3facfbe750e8b10d8ec48ede08560108f58363e9b8b8687d9ccb68faf0ba24833e267a0f1c0518c89fdabfe
@@ -8982,7 +8973,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.15.0, lodash@npm:^4.17.21":
+"lodash@npm:^4.17.21":
   version: 4.18.1
   resolution: "lodash@npm:4.18.1"
   checksum: bb5f5b49aad29614e709af02b64c56b0f8b78c6a81434a3c1ae527d2f0f78ca08f9d9fb22aa825a053876c9d2166e9c01f31c356014b5e2bdc0556c057433102
@@ -10980,16 +10971,16 @@ __metadata:
   linkType: hard
 
 "release-it@npm:^20.0.0":
-  version: 20.0.0
-  resolution: "release-it@npm:20.0.0"
+  version: 20.0.1
+  resolution: "release-it@npm:20.0.1"
   dependencies:
-    "@inquirer/prompts": 8.3.2
-    "@nodeutils/defaults-deep": 1.1.0
+    "@inquirer/prompts": 8.4.2
     "@octokit/rest": 22.0.1
     "@phun-ky/typeof": 2.0.3
     async-retry: 1.3.3
     c12: 3.3.3
     ci-info: ^4.4.0
+    defu: ^6.1.7
     eta: 4.5.1
     git-url-parse: 16.1.0
     issue-parser: 7.0.1
@@ -11008,7 +10999,7 @@ __metadata:
     yargs-parser: 22.0.0
   bin:
     release-it: bin/release-it.js
-  checksum: 05ba031fb2bf8d327fb76c00ff7e65a1cd07262c5b96470cfcfe6ef071abc9bd70c6b5cb66250ce7e485c7b4f65839bb3e09cfd358ca0847452c99fa91c6cc56
+  checksum: 6f568c4a10a9179500e7bc4c24c9ee958561c334f131c5ac597c7de876588d8f45d731b2d1f4c9284c74335820022b9cbe5275821cbd76c4480d786bbb1c98da
   languageName: node
   linkType: hard
 
