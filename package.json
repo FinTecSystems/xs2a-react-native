@@ -72,6 +72,7 @@
     "@jest/globals": "^30.0.0",
     "@react-native/babel-preset": "0.85.2",
     "@react-native/eslint-config": "0.85.1",
+    "@react-native/jest-preset": "^0.85.3",
     "@release-it/conventional-changelog": "^10.0.6",
     "@types/react": "^19.2.0",
     "commitlint": "^20.5.0",
@@ -102,7 +103,7 @@
   ],
   "packageManager": "yarn@3.6.1",
   "jest": {
-    "preset": "react-native",
+    "preset": "@react-native/jest-preset",
     "modulePathIgnorePatterns": [
       "<rootDir>/example/node_modules",
       "<rootDir>/lib/"
