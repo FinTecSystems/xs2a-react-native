@@ -1866,7 +1866,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@conventional-changelog/git-client@npm:^2.5.1, @conventional-changelog/git-client@npm:^2.6.0":
+"@conventional-changelog/git-client@npm:^2.5.1, @conventional-changelog/git-client@npm:^2.6.0, @conventional-changelog/git-client@npm:^2.7.0":
   version: 2.7.0
   resolution: "@conventional-changelog/git-client@npm:2.7.0"
   dependencies:
@@ -2068,7 +2068,7 @@ __metadata:
     "@react-native/babel-preset": 0.85.3
     "@react-native/eslint-config": 0.85.3
     "@react-native/jest-preset": 0.85.3
-    "@release-it/conventional-changelog": ^10.0.6
+    "@release-it/conventional-changelog": ^11.0.1
     "@types/react": ^19.2.0
     commitlint: ^20.5.0
     del-cli: ^7.0.0
@@ -3706,20 +3706,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@release-it/conventional-changelog@npm:^10.0.6":
-  version: 10.0.6
-  resolution: "@release-it/conventional-changelog@npm:10.0.6"
+"@release-it/conventional-changelog@npm:^11.0.1":
+  version: 11.0.1
+  resolution: "@release-it/conventional-changelog@npm:11.0.1"
   dependencies:
-    "@conventional-changelog/git-client": ^2.6.0
+    "@conventional-changelog/git-client": ^2.7.0
     concat-stream: ^2.0.0
     conventional-changelog: ^7.2.0
-    conventional-changelog-angular: ^8.3.0
-    conventional-changelog-conventionalcommits: ^9.3.0
+    conventional-changelog-angular: ^8.3.1
+    conventional-changelog-conventionalcommits: ^9.3.1
     conventional-recommended-bump: ^11.2.0
     semver: ^7.7.4
   peerDependencies:
-    release-it: ^18.0.0 || ^19.0.0
-  checksum: cde63539d8796dde7d9671ce95c981ba62c98312386c6fc72851b3fc61e89091ac72bcbeec9b9d2b8bd234aa8db70fbd97517e31aad5f39dd64e24c8e6600460
+    release-it: ^18.0.0 || ^19.0.0 || ^20.0.0
+  checksum: c64cb1f2dd6ab6dab72435b9ad5653f3f590ee47e82067481b2e92a82a009e431111750dda1104e34451fb413eb314969e2d969edaa985fc7c79b109c532ec87
   languageName: node
   linkType: hard
 
@@ -5541,7 +5541,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"conventional-changelog-angular@npm:^8.2.0, conventional-changelog-angular@npm:^8.3.0":
+"conventional-changelog-angular@npm:^8.2.0, conventional-changelog-angular@npm:^8.3.1":
   version: 8.3.1
   resolution: "conventional-changelog-angular@npm:8.3.1"
   dependencies:
@@ -5550,7 +5550,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"conventional-changelog-conventionalcommits@npm:^9.2.0, conventional-changelog-conventionalcommits@npm:^9.3.0":
+"conventional-changelog-conventionalcommits@npm:^9.2.0, conventional-changelog-conventionalcommits@npm:^9.3.1":
   version: 9.3.1
   resolution: "conventional-changelog-conventionalcommits@npm:9.3.1"
   dependencies:
