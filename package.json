@@ -92,7 +92,9 @@
     "typescript": "^6.0.2"
   },
   "resolutions": {
-    "@types/react": "^19.2.14"
+    "@types/react": "^19.2.14",
+    "jest-environment-node": "^30.0.0",
+    "jest-mock": "^30.0.0"
   },
   "peerDependencies": {
     "react": "*",
