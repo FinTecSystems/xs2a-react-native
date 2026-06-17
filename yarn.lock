@@ -11459,8 +11459,8 @@ __metadata:
   linkType: hard
 
 "release-it@npm:^20.0.0":
-  version: 20.0.1
-  resolution: "release-it@npm:20.0.1"
+  version: 20.2.0
+  resolution: "release-it@npm:20.2.0"
   dependencies:
     "@inquirer/prompts": 8.4.2
     "@octokit/rest": 22.0.1
@@ -11487,7 +11487,7 @@ __metadata:
     yargs-parser: 22.0.0
   bin:
     release-it: bin/release-it.js
-  checksum: 6f568c4a10a9179500e7bc4c24c9ee958561c334f131c5ac597c7de876588d8f45d731b2d1f4c9284c74335820022b9cbe5275821cbd76c4480d786bbb1c98da
+  checksum: 138aea80396941051a73ef5059889b0593fb970f0f5c42f8f3a1ee0422bf09fd0c586348e7d3de263c61ae9937bda2cbeb610dc151f06bc06ead62845a4807af
   languageName: node
   linkType: hard
 
