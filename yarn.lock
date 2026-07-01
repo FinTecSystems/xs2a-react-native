@@ -2082,7 +2082,7 @@ __metadata:
     "@react-native-community/cli-platform-ios": 20.1.3
     "@react-native/babel-preset": 0.85.2
     "@react-native/metro-config": 0.86.0
-    "@react-native/typescript-config": 0.85.2
+    "@react-native/typescript-config": 0.86.0
     "@types/react": 19.2.15
     react: 19.2.6
     react-native: 0.86.0
@@ -3636,10 +3636,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-native/typescript-config@npm:0.85.2":
-  version: 0.85.2
-  resolution: "@react-native/typescript-config@npm:0.85.2"
-  checksum: 9459f686acad048eff47e6a144ea2b1c8b5cdfeb98be774826a8604a116f3bd47f23fe8003141d9109a898d41a3adc288335ef173dec4b9438c4a3a7846ea05c
+"@react-native/typescript-config@npm:0.86.0":
+  version: 0.86.0
+  resolution: "@react-native/typescript-config@npm:0.86.0"
+  checksum: c0857f811d135380f8350c085d0e7896c8d22f222b9cff88d6c1a57902a88993738666ca54f1a508fa0a6e77836547deca6ee9acb481a5e5c7ed70db790297ef
   languageName: node
   linkType: hard
 
