@@ -1,6 +1,6 @@
 {
   "name": "@fintecsystems/xs2a-react-native",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Integrate XS2A from Tink Germany into your React Native App.",
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",
@@ -65,16 +65,17 @@
     "access": "public"
   },
   "devDependencies": {
-    "@commitlint/config-conventional": "^20.5.0",
+    "@commitlint/config-conventional": "^21.2.0",
     "@eslint/compat": "^2.0.3",
     "@eslint/eslintrc": "^3.3.5",
     "@eslint/js": "^10.0.1",
     "@jest/globals": "^30.0.0",
-    "@react-native/babel-preset": "0.85.0",
-    "@react-native/eslint-config": "0.85.1",
-    "@release-it/conventional-changelog": "^10.0.6",
+    "@react-native/babel-preset": "0.85.3",
+    "@react-native/eslint-config": "0.85.3",
+    "@react-native/jest-preset": "0.85.3",
+    "@release-it/conventional-changelog": "^11.0.1",
     "@types/react": "^19.2.0",
-    "commitlint": "^20.5.0",
+    "commitlint": "^21.2.1",
     "del-cli": "^7.0.0",
     "eslint": "^9.39.4",
     "eslint-config-prettier": "^10.1.8",
@@ -83,15 +84,17 @@
     "jest": "^30.3.0",
     "lefthook": "^2.1.4",
     "prettier": "^3.8.1",
-    "react": "19.2.5",
-    "react-native": "0.83.0",
+    "react": "19.2.6",
+    "react-native": "0.86.0",
     "react-native-builder-bob": "^0.41.0",
-    "release-it": "^19.2.4",
+    "release-it": "^20.0.0",
     "turbo": "^2.8.21",
     "typescript": "^6.0.2"
   },
   "resolutions": {
-    "@types/react": "^19.2.14"
+    "@types/react": "^19.2.14",
+    "jest-environment-node": "^30.0.0",
+    "jest-mock": "^30.0.0"
   },
   "peerDependencies": {
     "react": "*",
@@ -102,7 +105,7 @@
   ],
   "packageManager": "yarn@3.6.1",
   "jest": {
-    "preset": "react-native",
+    "preset": "@react-native/jest-preset",
     "modulePathIgnorePatterns": [
       "<rootDir>/example/node_modules",
       "<rootDir>/lib/"
