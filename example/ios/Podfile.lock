@@ -1611,7 +1611,7 @@ PODS:
   - SocketRocket (0.7.1):
     - ReactNativeDependencies
   - SwiftyJSON (5.0.2)
-  - xs2a-react-native (2.2.1):
+  - xs2a-react-native (3.0.0):
     - hermes-engine
     - RCTRequired
     - RCTTypeSafety
@@ -2000,7 +2000,7 @@ SPEC CHECKSUMS:
   ReactNativeDependencies: 94c922c39e0e6150ee9ad05e2ca1946e0ef55783
   SocketRocket: 37aec555668fb852ec12e3c0de59a86ca58f0871
   SwiftyJSON: f5b1bf1cd8dd53cd25887ac0eabcfd92301c6a5a
-  xs2a-react-native: e75d36fd0f8a26216c2cd125b5b2a7abcfd0e5ad
+  xs2a-react-native: d60ac7118e4016378a87cd2fc94b0f238045905a
   XS2AiOS: 1ff5a4b68b437f3cd8a8ecc141940c719849ab30
   Yoga: d1c536142c5ff8ec8cd856ab2a7c227a1d875c8e
 
