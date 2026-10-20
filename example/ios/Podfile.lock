@@ -1632,9 +1632,9 @@ PODS:
     - ReactCodegen
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
-    - XS2AiOS (= 2.3.3)
+    - XS2AiOS (= 2.3.4)
     - Yoga
-  - XS2AiOS (2.3.3):
+  - XS2AiOS (2.3.4):
     - KeychainAccess (= 4.2.2)
     - NVActivityIndicatorView (= 5.2.0)
     - SwiftyJSON (= 5.0.2)
@@ -2000,10 +2000,10 @@ SPEC CHECKSUMS:
   ReactNativeDependencies: 94c922c39e0e6150ee9ad05e2ca1946e0ef55783
   SocketRocket: 37aec555668fb852ec12e3c0de59a86ca58f0871
   SwiftyJSON: f5b1bf1cd8dd53cd25887ac0eabcfd92301c6a5a
-  xs2a-react-native: e0f26bb98e9907288b38b5ad7e46d767c6b7670e
-  XS2AiOS: a3cc054a51344c1f77befe597192c724f19a6cb4
+  xs2a-react-native: c0335dd073b9d6477f6f63486394fa4ef01e1edf
+  XS2AiOS: 10076f85582bee16f5575e56ef4fedc59a1f69ca
   Yoga: d1c536142c5ff8ec8cd856ab2a7c227a1d875c8e
 
 PODFILE CHECKSUM: 7ccd17a3ae65644e7852cdc6afe271cbcde5e50b
 
-COCOAPODS: 1.15.2
+COCOAPODS: 1.16.2
