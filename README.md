@@ -29,6 +29,28 @@ pod install
 ```
 
 ### Android
+
+#### Kotlin version
+
+The bundled Android SDK (`com.fintecsystems:xs2awizard`) is built with Kotlin 2.4, so your app has to compile with **Kotlin 2.3 or newer**. Older compilers fail with `Module was compiled with an incompatible version of Kotlin`.
+
+In your root `android/build.gradle`, set the Kotlin version and pin the Kotlin Gradle plugin to it. The React Native Gradle plugin otherwise resolves its own, older Kotlin version:
+
+```groovy
+buildscript {
+    ext {
+        kotlinVersion = "2.4.10" // 2.3.0 or newer
+    }
+    dependencies {
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
+    }
+}
+```
+
+If you use other Kotlin compiler plugins (KSP, kapt, Hilt, Compose, ...), update them to versions that match your Kotlin version.
+
+#### SDK versions
+
 Make sure, that your app's `minSdkVersion` is 21 or higher and that your `compileSdkVersion` and `targetSdkVersion` is 33 or higher.
 
 Because of that your `gradle-build-tools`-version has to be `4.2.0` or higher.
