@@ -3,18 +3,15 @@
 Integrate XS2A from Tink Germany into your React Native App.
 This React Native SDK is a wrapper of [xs2a-ios](https://github.com/FinTecSystems/xs2a-ios) and [xs2a-android](https://github.com/FinTecSystems/xs2a-android).
 
-## Upgrading from v1
-
-Newer React Native versions require the following entry in your `tsconfig.json`:
-
-```javascript
-"moduleResolution": "bundler",
-```
-Please make sure you have this field set, otherwise you'll encounter import errors.
+> [!IMPORTANT]
+> **Upgrading to v3:** v3 raises the Android requirements (Kotlin 2.3+, `minSdkVersion` 24, `compileSdkVersion` 36) and updates the bundled native SDKs. See [Installation](#installation).
 
 ## Requirements
 
-- iOS Version >= 13
+- iOS Version >= 15.1 (follows the minimum of your React Native version)
+- Android `minSdkVersion` >= 24
+- Kotlin >= 2.3 (Android)
+- Bundled native SDKs: `XS2AiOS` 2.3.4 and `com.fintecsystems:xs2awizard` 6.2.4
 
 ## Installation
 
@@ -29,56 +26,56 @@ pod install
 ```
 
 ### Android
-Make sure, that your app's `minSdkVersion` is 21 or higher and that your `compileSdkVersion` and `targetSdkVersion` is 33 or higher.
 
-Because of that your `gradle-build-tools`-version has to be `4.2.0` or higher.
+#### Kotlin version
 
-Make sure, because we raised the `compileSdkVersion` to 33, to delete the `buildToolsVersion` field.
+The bundled Android SDK (`com.fintecsystems:xs2awizard`) is built with Kotlin 2.4, so your app has to compile with **Kotlin 2.3 or newer**. Older compilers fail with `Module was compiled with an incompatible version of Kotlin`.
+
+In your root `android/build.gradle`, set the Kotlin version and pin the Kotlin Gradle plugin to it. The React Native Gradle plugin otherwise resolves its own, older Kotlin version:
+
+```groovy
+buildscript {
+    ext {
+        kotlinVersion = "2.4.10" // 2.3.0 or newer
+    }
+    dependencies {
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
+    }
+}
+```
+
+If you use other Kotlin compiler plugins (KSP, kapt, Hilt, Compose, ...), update them to versions that match your Kotlin version.
+
+#### SDK versions
+
+Make sure that your app's `minSdkVersion` is **24 or higher** and that your `compileSdkVersion` and `targetSdkVersion` are **36 or higher**. The Android SDK also requires a current Android Gradle Plugin (the library itself is built with AGP 9.3). Remove a legacy `buildToolsVersion` pin if it is older than your `compileSdkVersion` requires.
 
 `android/build.gradle`
 ```groovy
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-
 buildscript {
     ext {
-        buildToolsVersion = "30.0.2" // Delete this line
-        minSdkVersion = 21 // Upgrade if needed
-        compileSdkVersion = 33 // Upgrade if needed
-        targetSdkVersion = 33 // Upgrade if needed
+        minSdkVersion = 24 // Upgrade if needed
+        compileSdkVersion = 36 // Upgrade if needed
+        targetSdkVersion = 36 // Upgrade if needed
+        kotlinVersion = "2.4.10"
     }
-    repositories {
-        google()
-        jcenter()
-    }
-    dependencies {
-        classpath("com.android.tools.build:gradle:4.2.2") // Upgrade if needed
-...
+}
 ```
 
-Since Android 12 (API Level 31) you need to add `android:exported` to your `AndroidManifest.xml`.
+Since Android 12 (API Level 31) you need to add `android:exported` to the activity in your `AndroidManifest.xml`, and the app needs the `INTERNET` permission. The wizard needs a current `Activity`, so it must be rendered inside your `MainActivity` (a `FragmentActivity`/`ComponentActivity`, as in the default React Native template).
 
 `android/app/src/main/AndroidManifest.xml`
 ```xml
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.rn_testapp">
+<uses-permission android:name="android.permission.INTERNET" />
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <application
-      android:name=".MainApplication"
-      android:label="@string/app_name"
-      android:icon="@mipmap/ic_launcher"
-      android:roundIcon="@mipmap/ic_launcher_round"
-      android:allowBackup="false"
-      android:theme="@style/AppTheme">
-      <activity
-        android:name=".MainActivity"
-        android:label="@string/app_name"
-        android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
-        android:launchMode="singleTask"
-        android:exported="true" <!--Add this line-->
-        android:windowSoftInputMode="adjustResize">
+<activity
+  android:name=".MainActivity"
+  android:exported="true" <!--Add this line-->
+  android:launchMode="singleTask"
+  android:windowSoftInputMode="adjustResize">
 ```
+
+Multiple wizard views can be used in one app; each view keeps its own session state.
 
 ## Usage
 
@@ -106,6 +103,10 @@ import Xs2aReactNativeViewManager from "@fintecsystems/xs2a-react-native";
     // e.g. redirect to error screen
     console.log('Network error');
   }}
+  onStep={({ nativeEvent: { newStep } }) => {
+    // Called whenever the wizard moves to a new step. Optional to implement.
+    console.log(newStep);
+  }}
   onBackButtonTapped={({ nativeEvent: { currentStep } }) => {
     // Called when the back button was tapped. Optional to implement.
     // currentStep can be any of "login", "tan", "account", "bank" or empty string ("")
@@ -124,6 +125,9 @@ import Xs2aReactNativeViewManager from "@fintecsystems/xs2a-react-native";
     console.log(errorCode, recoverable);
   }}
   // All styles are optional. For all available properties, refer to Xs2aReactNativeStyleProvider.
+  // Android only: onTintColor, errorColor, surfaceColor, onSurfaceColor,
+  // loadingIndicatorBackgroundColor, connectionStatusBannerBackgroundColor,
+  // connectionStatusBannerTextColor.
   styleProvider={{
     tintColor: '#ff0000',
     logoVariation: 'STANDARD',
@@ -169,12 +173,12 @@ import Xs2aReactNativeViewManager from "@fintecsystems/xs2a-react-native";
 
 ### Encryption Export Compliance Information
 
-When uploading your app to App Store Connect, Apple typically wants to know some information on whether your app uses encryption and if it qualifies for an exemption 
+When uploading your app to App Store Connect, Apple typically wants to know some information on whether your app uses encryption and if it qualifies for an exemption
 under Category 5, Part 2 of the U.S. Export Administration Regulations. This SDK *does* qualify for such exemption, namely article `(d)`:
 
 > Specially designed and limited for banking use or "money transactions"
 
-Please note, that this only applies to this SDK and the corresponding `XS2AiOSNetService`, but not to any other parts of your app, which might not qualify 
+Please note, that this only applies to this SDK and the corresponding `XS2AiOSNetService`, but not to any other parts of your app, which might not qualify
 for such exemptions and you might have to reconsider how to answer that dialog.
 
 ### License

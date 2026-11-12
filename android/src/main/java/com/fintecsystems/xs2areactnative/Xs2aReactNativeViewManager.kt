@@ -1,13 +1,20 @@
 package com.fintecsystems.xs2areactnative
 
 import android.graphics.Color
+import android.app.Activity
 import android.view.View
+import android.widget.FrameLayout
+import androidx.lifecycle.ViewModelProvider
+import java.util.UUID
+import java.util.WeakHashMap
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import com.facebook.react.bridge.*
 import com.facebook.react.common.MapBuilder
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.lifecycle.ViewModelStoreOwner
 import com.facebook.react.uimanager.SimpleViewManager
 import com.facebook.react.uimanager.ThemedReactContext
 import com.facebook.react.uimanager.annotations.ReactProp
@@ -17,14 +24,23 @@ import com.fintecsystems.xs2awizard.components.XS2AWizardCallbackListener
 import com.fintecsystems.xs2awizard.components.XS2AWizardError
 import com.fintecsystems.xs2awizard.components.XS2AWizardLanguage
 import com.fintecsystems.xs2awizard.components.XS2AWizardStep
+import com.fintecsystems.xs2awizard.components.XS2AWizardViewModel
 import com.fintecsystems.xs2awizard.components.theme.XS2ATheme
 import com.fintecsystems.xs2awizard.components.theme.styles.LogoVariation
 
 class Xs2aReactNativeViewManager : SimpleViewManager<View>() {
-  private val _currentStep = mutableStateOf<XS2AWizardStep?>(null)
-  private val _sessionKey = mutableStateOf<String?>(null)
-  private val _theme = mutableStateOf<XS2ATheme?>(null)
-  private val _language = mutableStateOf<XS2AWizardLanguage?>(null)
+  // The ViewManager is a singleton shared by all views, so state must be kept per view.
+  private class ViewState {
+    val currentStep = mutableStateOf<XS2AWizardStep?>(null)
+    val sessionKey = mutableStateOf<String?>(null)
+    val theme = mutableStateOf<XS2ATheme?>(null)
+    val language = mutableStateOf<XS2AWizardLanguage?>(null)
+    val viewModelKey = UUID.randomUUID().toString()
+  }
+
+  private val viewStates = WeakHashMap<View, ViewState>()
+
+  private fun stateFor(view: View): ViewState = viewStates.getOrPut(view) { ViewState() }
 
   override fun getName() = "Xs2aReactNativeView"
 
@@ -45,46 +61,81 @@ class Xs2aReactNativeViewManager : SimpleViewManager<View>() {
     )
 
   override fun createViewInstance(reactContext: ThemedReactContext): View {
-    return ComposeView(reactContext.reactApplicationContext.currentActivity!!).apply {
+    // The SDK casts the Compose context to (Fragment)Activity, so the ComposeView must be
+    // created with the activity itself.
+    val activity = requireNotNull(reactContext.reactApplicationContext.currentActivity) {
+      "Xs2aReactNativeView requires a current Activity."
+    }
+
+    // Fabric may measure a view before it is attached to a window, which crashes a ComposeView
+    // ("Cannot locate windowRecomposer"). ComposeView is final, so defer creating it until
+    // this wrapper is attached.
+    return object : FrameLayout(activity) {
+      override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+        if (childCount == 0) {
+          addView(
+            createComposeView(reactContext, activity, this),
+            LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
+          )
+        }
+      }
+    }
+  }
+
+  private fun createComposeView(
+    reactContext: ThemedReactContext,
+    activity: Activity,
+    container: View
+  ): ComposeView {
+    return ComposeView(activity).apply {
       setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnDetachedFromWindowOrReleasedFromPool)
 
       val xs2aCallbackListener = object : XS2AWizardCallbackListener {
         override fun onAbort() {
-          onAbort(reactContext, this@apply)
+          onAbort(reactContext, container)
         }
 
         override fun onBack() {
-          onBack(reactContext, this@apply)
+          onBack(reactContext, container)
         }
 
         override fun onError(xs2aWizardError: XS2AWizardError) {
-          onError(reactContext, this@apply, xs2aWizardError)
+          onError(reactContext, container, xs2aWizardError)
         }
 
         override fun onFinish(credentials: String?) {
-          onFinish(reactContext, this@apply, credentials)
+          onFinish(reactContext, container, credentials)
         }
 
         override fun onNetworkError() {
-          onNetworkError(reactContext, this@apply)
+          onNetworkError(reactContext, container)
         }
 
         override fun onStep(newStep: XS2AWizardStep) {
-          this@Xs2aReactNativeViewManager.onStep(reactContext, this@apply, newStep)
+          this@Xs2aReactNativeViewManager.onStep(reactContext, container, newStep)
         }
       }
 
+      val state = stateFor(container)
+
       setContent {
-        val sessionKey by this@Xs2aReactNativeViewManager._sessionKey
-        val theme by this@Xs2aReactNativeViewManager._theme
-        val language by this@Xs2aReactNativeViewManager._language
+        // A dedicated ViewModel per view, so concurrent or consecutive wizard views never share
+        // (or stop) each other's session.
+        val viewModel = remember {
+          ViewModelProvider(activity as ViewModelStoreOwner)[state.viewModelKey, XS2AWizardViewModel::class.java]
+        }
+        val sessionKey by state.sessionKey
+        val theme by state.theme
+        val language by state.language
 
         sessionKey?.let {
             XS2AWizard(
               sessionKey = it,
               callbackListener = xs2aCallbackListener,
               theme = theme,
-              language = language
+              language = language,
+              xs2aWizardViewModel = viewModel
             )
         }
       }
@@ -93,13 +144,13 @@ class Xs2aReactNativeViewManager : SimpleViewManager<View>() {
 
   @ReactProp(name = "wizardSessionKey")
   fun setSessionKey(view: View, sessionKey: String) {
-    _sessionKey.value = sessionKey
+    stateFor(view).sessionKey.value = sessionKey
   }
 
   @ReactProp(name = "styleProvider")
   fun setTheme(view: View, styleProvider: ReadableMap? = null) {
     if (styleProvider == null) {
-      _theme.value = null
+      stateFor(view).theme.value = null
 
       return
     }
@@ -107,7 +158,7 @@ class Xs2aReactNativeViewManager : SimpleViewManager<View>() {
     // TODO: Add font configuration.
 
     styleProvider.apply {
-      _theme.value = XS2ATheme(
+      stateFor(view).theme.value = XS2ATheme(
         primaryColor = getXS2AColor("tintColor", PRIMARY_COLOR),
         onPrimaryColor = getXS2AColor("onTintColor", WHITE),
         errorColor = getXS2AColor("errorColor", ERROR_COLOR),
@@ -143,7 +194,7 @@ class Xs2aReactNativeViewManager : SimpleViewManager<View>() {
 
   @ReactProp(name = "language")
   fun setLanguage(view: View, language: String) {
-    _language.value = XS2AWizardLanguage.valueOf(language.uppercase())
+    stateFor(view).language.value = XS2AWizardLanguage.valueOf(language.uppercase())
   }
 
   private fun dispatchEvent(reactContext: ThemedReactContext, view: View, event: WritableMap, eventName: String) {
@@ -181,7 +232,8 @@ class Xs2aReactNativeViewManager : SimpleViewManager<View>() {
 
   private fun onBack(reactContext: ThemedReactContext, view: View) {
     Arguments.createMap().apply {
-      if (_currentStep.value != null) putString("currentStep", _currentStep.value!!.stepName)
+      val currentStep = stateFor(view).currentStep.value
+      if (currentStep != null) putString("currentStep", currentStep.stepName)
       else putNull("currentStep")
 
       dispatchEvent(reactContext, view, this, EVENT_BACK)
@@ -189,7 +241,7 @@ class Xs2aReactNativeViewManager : SimpleViewManager<View>() {
   }
 
   private fun onStep(reactContext: ThemedReactContext, view: View, newStep: XS2AWizardStep?) {
-    _currentStep.value = newStep
+    stateFor(view).currentStep.value = newStep
 
     Arguments.createMap().apply {
       putString("newStep", newStep?.stepName)
