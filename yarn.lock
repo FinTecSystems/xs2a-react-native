@@ -2311,8 +2311,8 @@ __metadata:
     "@react-native/babel-preset": 0.87.1
     "@react-native/metro-config": 0.88.1
     "@react-native/typescript-config": 0.87.1
-    "@types/react": 19.2.18
-    react: 19.2.8
+    "@types/react": 19.3.0
+    react: 19.3.1
     react-native: 0.88.1
     react-native-builder-bob: ^0.43.0
   languageName: unknown
@@ -2341,7 +2341,7 @@ __metadata:
     jest: ^30.3.0
     lefthook: ^2.1.4
     prettier: ^3.8.1
-    react: 19.2.8
+    react: 19.3.1
     react-native: 0.88.1
     react-native-builder-bob: ^0.43.0
     release-it: ^21.1.2
@@ -11364,10 +11364,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:19.2.8":
-  version: 19.2.8
-  resolution: "react@npm:19.2.8"
-  checksum: cdedb4786eb3eb79c8fbaa6df299de61ecd9e1cd4c7cd52213b5af7a98c67d532fd6b14b9d546ae5851f3962437aec22ad17ee6e8e0450de11c595300c5e5bd7
+"react@npm:19.3.1":
+  version: 19.3.1
+  resolution: "react@npm:19.3.1"
+  checksum: 08dc4ff4bf67184da3bc91ec89a03e6526479400270f7bbfd79b4ef36245a341a0861d0ce5e31443b6b9d17dd1006d95555e5d1ebf0c53a5f529947dc3c74dfb
   languageName: node
   linkType: hard
 
