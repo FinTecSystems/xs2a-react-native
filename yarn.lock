@@ -1983,12 +1983,12 @@ __metadata:
   linkType: hard
 
 "@commitlint/config-conventional@npm:^21.2.0":
-  version: 21.2.2
-  resolution: "@commitlint/config-conventional@npm:21.2.2"
+  version: 21.2.4
+  resolution: "@commitlint/config-conventional@npm:21.2.4"
   dependencies:
-    "@commitlint/types": ^21.2.0
+    "@commitlint/types": ^21.2.3
     conventional-changelog-conventionalcommits: ^10.0.0
-  checksum: a659dac1677b3e05949856746af15349725de558e7e9d95875abf7212a94809f1cade523bd0568222ca7e124e6632b6092eb5eca9ba49b60daed8d4579fb626d
+  checksum: 65d1474b70dd2d184714b7d03d9061d684a9bdef1b5c7df086acbea5a8d2f3c1901b96c92e0617ab1f2e2d8446159a06c019f97826913822557c42f19e8dab03
   languageName: node
   linkType: hard
 
@@ -2146,6 +2146,16 @@ __metadata:
     conventional-commits-parser: ^7.0.0
     picocolors: ^1.1.1
   checksum: e5dff2c90290c53f6fd23e7f547fd7ee6e20880c40a4be4f5cdb36f31541aa15e7b9dc1337243cbeaed0a4dd17ba6c6b9f09d438f49c0cf8ea49078744ad634a
+  languageName: node
+  linkType: hard
+
+"@commitlint/types@npm:^21.2.3":
+  version: 21.2.3
+  resolution: "@commitlint/types@npm:21.2.3"
+  dependencies:
+    conventional-commits-parser: ^7.0.0
+    picocolors: ^1.1.1
+  checksum: 0485e8e3d3507f2feb5376d0c9e965c035d5a5da6c6701de41ddddb80c88c3a0b17b40e77b91927d5e09b368dd4b403f8b98311c09f36ff1ab86c7a61b17c2f0
   languageName: node
   linkType: hard
 
